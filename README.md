@@ -9,9 +9,17 @@ https://unity3d.com/de/get-unity/download
 It will tell you if you're opening a project with the wrong Unity version and will also let you install the correct version automatically. 
 (For this you need a Unity account. dk if you can get around this with a direct installation.)
 
-2. Install the MRTK Feature Tool. 
+2. Install .NET
+
+Desktop App
+
+https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime
+
+3. (Only for initial setup, not if you only clone the project.) Download the MRTK Feature Tool. 
 
 It lets you organize your Unity Project, install all MRTK packages and additional stuff that we might need. (e.g. for Azure)
+
+Here's how it works: https://docs.microsoft.com/en-gb/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool
 
 
 ## Resources

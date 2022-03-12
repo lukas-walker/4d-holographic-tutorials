@@ -9,6 +9,8 @@ https://unity3d.com/de/get-unity/download
 It will tell you if you're opening a project with the wrong Unity version and will also let you install the correct version automatically. 
 (For this you need a Unity account. dk if you can get around this with a direct installation.)
 
+Attention: This may take FOREVER. Don't stop the installation even though it looks like it's stuck. If you do it might show the version as installed, but it might still be broken in some way. (Happened to me before.)
+
 2. Install .NET
 
 Desktop App
@@ -43,6 +45,14 @@ Maybe an error occurs:
 One way to resolve it is to install the packages again using the feature tool (it will say that the package is installed already, but you can just "install" it again anyway). Make sure you use the correct version. The tool will tell you which version is currently (supposedly) installed.
 
 Importing everything will take very long. (10-15min on my low end computer)
+
+6. Change the build settings to UWP
+
+Go to File > Build settings.
+
+Choose Platform Universal Windows Platform. If not yet installed it will tell you to install UWP the Unity Hub. (You can also do this directly in the Hub before opening the project.)
+
+
 
 ## Resources
 

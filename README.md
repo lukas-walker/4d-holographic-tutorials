@@ -81,14 +81,17 @@ Then klick Switch Platform. You don't need to select Hololens from the target de
 - In the Quality settings (Project Settings > Quality), change the default level for UWP to very low and disable the other levels. 
 - In the Player settings, switch on the Supported Device Family > Holographic
 - In Preferences > External Tools select VS as External Script Editor
+- Recommended: In Edit > Preferences > General disable auto refresh. This way, Unity doesn't compile everything everytime you change something in a script. You can rebuild with crtl+R
+
 
 8. First Steps
 
 Checkout https://docs.microsoft.com/en-us/windows/mixed-reality/mrtk-unity/features/input-simulation/input-simulation-service?view=mrtkunity-2021-05. You can find sample scenes with the content in the MRTK example directory. I think to play around with all of these features is the best way to learn the logic of MRTK. Also checkout the Object MixedReality Toolkit in each scene. It controls the profiles that in turn control the behavior of the application. (E.g. Input > Articulated Hand Tracking lets you choose where the hand mesh should be visualized when there is a articulated hand tracked in the scene (e.g. when you press the space bar in game mode)).
 
-I also added a cube and a script to the sample scene (in the scenes folder). It's very simple, check it out :)
+I also added a cube with an Interactable component that reacts to clicks and voice commands (can be tested with microphone) and a script to the sample scene (in the scenes folder). It's very simple, check it out :)
 
 Important note: when you first open a script from Unity in VS2022, it will tell you to install additional stuff in VS. This is required e.g. for debugging code. 
+
 
 
 

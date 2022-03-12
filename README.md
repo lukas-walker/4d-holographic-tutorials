@@ -9,6 +9,8 @@ https://unity3d.com/de/get-unity/download
 It will tell you if you're opening a project with the wrong Unity version and will also let you install the correct version automatically. 
 (For this you need a Unity account. dk if you can get around this with a direct installation.)
 
+When choosing the Editor to install, add the UWP build support and the IL2CPP build support. You can also add these modules later.
+
 Attention: This may take FOREVER. Don't stop the installation even though it looks like it's stuck. If you do it might show the version as installed, but it might still be broken in some way. (Happened to me before.)
 
 2. Install .NET

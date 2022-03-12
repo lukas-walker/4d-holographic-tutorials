@@ -23,6 +23,11 @@ https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime
 
 I'm not sure how restrictive the choice of version is. I had the 2022 version installed which was enough for the Unity2020 installation, but the Unity2019 installation that is used to open isaaks repo triggered the VS install of 2019. Don't know if this doesn't matter..
 
+Make sure you install 
+
+- Universal Windows Platform Development
+- Desktop Development with C++
+
 4. Download the MRTK Feature Tool. 
 
 It lets you organize your Unity Project, install all MRTK packages and additional stuff that we might need. (e.g. for Azure)
@@ -67,7 +72,15 @@ Go to File > Build settings.
 
 Choose Platform Universal Windows Platform. If not yet installed it will tell you to install UWP the Unity Hub. (You can also do this directly in the Hub before opening the project.)
 
+Then klick Switch Platform. You don't need to select Hololens from the target device list. (I don't think it makes a difference.)
 
+7. Configure the project
+
+- In the (new) Mixed Reality tab choose Toolkit > 
+- If necessary,  click on the yellow warning sign and click fix all
+- In the Quality settings (Project Settings > Quality), change the default level for UWP to very low and disable the other levels. 
+- In the Player settings, switch on the Supported Device Family > Holographic
+- In Preferences > External Tools select VS as External Script Editor
 
 ## Resources
 

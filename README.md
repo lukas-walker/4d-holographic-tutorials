@@ -25,6 +25,24 @@ It lets you organize your Unity Project, install all MRTK packages and additiona
 
 Here's how it works: https://docs.microsoft.com/en-gb/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool
 
+5. Open the Project
+
+Maybe an error occurs: 
+
+```An error occurred while resolving packages:
+  Project has invalid dependencies:
+    com.microsoft.mixedreality.openxr: The file [D:\Unity\goji\Packages\MixedReality\com.microsoft.mixedreality.openxr-1.0.0.tgz\package.json] cannot be found
+    com.microsoft.mixedreality.toolkit.examples: The file [D:\Unity\goji\Packages\MixedReality\com.microsoft.mixedreality.toolkit.examples-2.7.2.tgz\package.json] cannot be found
+    com.microsoft.mixedreality.toolkit.extensions: The file [D:\Unity\goji\Packages\MixedReality\com.microsoft.mixedreality.toolkit.extensions-2.7.2.tgz\package.json] cannot be found
+    com.microsoft.mixedreality.toolkit.foundation: The file [D:\Unity\goji\Packages\MixedReality\com.microsoft.mixedreality.toolkit.foundation-2.7.2.tgz\package.json] cannot be found
+    com.microsoft.mixedreality.toolkit.standardassets: The file [D:\Unity\goji\Packages\MixedReality\com.microsoft.mixedreality.toolkit.standardassets-2.7.2.tgz\package.json] cannot be found
+    com.microsoft.mixedreality.toolkit.testutilities: The file [D:\Unity\goji\Packages\MixedReality\com.microsoft.mixedreality.toolkit.testutilities-2.7.2.tgz\package.json] cannot be found
+    com.microsoft.mixedreality.toolkit.tools: The file [D:\Unity\goji\Packages\MixedReality\com.microsoft.mixedreality.toolkit.tools-2.7.2.tgz\package.json] cannot be found
+```
+
+One way to resolve it is to install the packages again using the feature tool (it will say that the package is installed already, but you can just "install" it again anyway). Make sure you use the correct version. The tool will tell you which version is currently (supposedly) installed.
+
+Importing everything will take very long. (10-15min on my low end computer)
 
 ## Resources
 
@@ -33,3 +51,5 @@ MRTK Documentation https://docs.microsoft.com/en-us/windows/mixed-reality/mrtk-u
 MRTK GitHub https://github.com/microsoft/MixedRealityToolkit-Unity/releases
 
 MRTK Feature Tool https://docs.microsoft.com/en-gb/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool
+
+Project proposal https://www.overleaf.com/project/62272be78a4c7f8ecc8eb89b

@@ -21,11 +21,24 @@ https://dotnet.microsoft.com/en-us/download/dotnet/5.0/runtime
 
 I'm not sure how restrictive the choice of version is. I had the 2022 version installed which was enough for the Unity2020 installation, but the Unity2019 installation that is used to open isaaks repo triggered the VS install of 2019. Don't know if this doesn't matter..
 
-4. (Only for initial setup, not if you only clone the project.) Download the MRTK Feature Tool. 
+4. Download the MRTK Feature Tool. 
 
 It lets you organize your Unity Project, install all MRTK packages and additional stuff that we might need. (e.g. for Azure)
 
 Here's how it works: https://docs.microsoft.com/en-gb/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool
+
+Added packages: 
+
+```
+Microsoft Azure Object Anchors
+MRTK Examples
+MRTK Extensions
+MRTK Foundation
+MRTK Standard Assets
+MRTK TestUtilities
+MRTK Tools
+Mixed Reality OpenXR Plugin
+```
 
 5. Open the Project
 

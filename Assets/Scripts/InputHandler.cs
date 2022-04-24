@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Input;
 
@@ -14,6 +16,9 @@ namespace Tutorials
 
         [SerializeField]
         private Transform animationSpecificPointOfReference;
+
+
+        public Button recordButton;
 
 
         void OnDestroy()
@@ -74,14 +79,14 @@ namespace Tutorials
         /// </summary>
         public void RecordAnimation()
         {
+
             if (FileHandler.AnimationListInstance.CurrentNode == null)
             {
                 CreateNewAnimationWrapper();
             }
 
             recorder.StartRecording();
-
-            // TODO: Should hide record button and show a stop recording button
+            
         }
 
         /// <summary>
@@ -102,6 +107,13 @@ namespace Tutorials
         /// </summary>
         private void OnStartRecording()
         {
+            ColorBlock colors = recordButton.colors;
+            colors.normalColor = new Color(0.7f, 0.7f, 0.7f, 1.0f); // Light grey
+            recordButton.colors = colors;
+
+            recordButton.GetComponentInChildren<Text>().text = "Stop Recording";
+
+            Debug.Log("Starting recording");
         }
 
         /// <summary>
@@ -109,6 +121,13 @@ namespace Tutorials
         /// </summary>
         private void OnStopRecording()
         {
+            ColorBlock colors = recordButton.colors;
+            colors.normalColor = new Color(0.9f, 0.0f, 0.0f, 1.0f); // Light grey
+            recordButton.colors = colors;
+
+            recordButton.GetComponentInChildren<Text>().text = "Record";
+
+            Debug.Log("Stopping recording");
         }
 
         /// <summary>

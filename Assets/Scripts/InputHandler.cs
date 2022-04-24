@@ -80,6 +80,8 @@ namespace Tutorials
             }
 
             recorder.StartRecording();
+
+            // TODO: Should hide record button and show a stop recording button
         }
 
         /// <summary>

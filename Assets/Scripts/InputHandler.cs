@@ -20,6 +20,15 @@ namespace Tutorials
 
         public Button recordButton;
         public Button playButton;
+        public Button editNameButton;
+
+        public GameObject sceneNameField;
+        public InputField sceneNameField2;
+
+        public Text sceneNameLabel;
+
+
+        private bool isUpdatingName = false; // Specifies if scene name is currently being updated
 
         void OnDestroy()
         {
@@ -217,6 +226,39 @@ namespace Tutorials
 
         }
 
+        /// <summary>
+        /// Edit the name of the scene and update the related UI components
+        /// </summary>
+        public void EditSceneName()
+        {
+            if (isUpdatingName)
+            {
+                isUpdatingName = false;
+
+                // Update the scene name label
+                sceneNameLabel.text = sceneNameField2.text;
+
+                // Hide the input field
+                sceneNameField.SetActive(false);
+
+                // Change the edit button to say "✎"
+                editNameButton.GetComponentInChildren<Text>().text = "✎";
+            }
+            else
+            {
+                isUpdatingName = true;
+
+                // Show the input field
+                sceneNameField.SetActive(true);
+
+                // Change edit button to say "Done"
+                editNameButton.GetComponentInChildren<Text>().text = "Done";
+            }
+
+
+
+        }
+        
         /// <summary>
         /// Should be called when the user changes the position or rotation of the animation specific point of reference changed.
         /// </summary>

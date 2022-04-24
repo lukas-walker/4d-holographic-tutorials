@@ -19,7 +19,7 @@ namespace Tutorials
 
 
         public Button recordButton;
-
+        public Button playButton;
 
         void OnDestroy()
         {
@@ -65,13 +65,30 @@ namespace Tutorials
 
         /// <summary>
         /// Creates a new animation wrapper that will be opened in the Editor. 
-        /// The animation specific point of reference will be reset to the global origin that is either at the MixedRealityPlayspace's origin or the origin that has been set through QR Code calibration. 
+        /// The animation specific point of reference will be reset to the global origin that is either at the MixedReality
+        /// space's origin or the origin that has been set through QR Code calibration. 
         /// </summary>
         public void CreateNewAnimationWrapper()
         {
             animationSpecificPointOfReference.localPosition = Vector3.zero;
             animationSpecificPointOfReference.localRotation = Quaternion.identity;
             FileHandler.AnimationListInstance.CreateNewAnimationEntity(null, animationSpecificPointOfReference);
+        }
+
+        /// <summary>
+        /// Record UI button pressed; take correct action to start/stop
+        /// </summary>
+        public void RecordButtonAction()
+        {
+            // TODO: Grey-out/disable non-recording buttons while recording
+            if (recorder.IsRecording)
+            {
+                 SaveAnimation();
+            }
+            else
+            {
+                RecordAnimation();
+            }
         }
 
         /// <summary>
@@ -127,7 +144,9 @@ namespace Tutorials
 
             recordButton.GetComponentInChildren<Text>().text = "Record";
 
+            playButton.GetComponentInChildren<Text>().text = "■";
             Debug.Log("Stopping recording");
+            SaveAnimation();
         }
 
         /// <summary>
@@ -175,7 +194,27 @@ namespace Tutorials
         /// </summary>
         public void StartAgain()
         {
+            playButton.GetComponentInChildren<Text>().text = "■";
             player.StartAgain();
+        }
+
+        /// <summary>
+        /// Play/Stop the current animation when the play button is pressed
+        /// </summary>
+        public void PlayButtonAction()
+        {
+            if (player.IsPlaying())
+            {
+                player.Stop();
+                playButton.GetComponentInChildren<Text>().text = "▶";
+            }
+            else
+            {
+                player.Start();
+                playButton.GetComponentInChildren<Text>().text = "■";
+            }
+
+
         }
 
         /// <summary>

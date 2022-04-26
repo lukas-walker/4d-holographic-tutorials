@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3808,7 +3808,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 339735212}
@@ -4796,7 +4796,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 1602374978}
@@ -5385,7 +5385,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 778974499}
@@ -6132,7 +6132,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 986926842}
@@ -7808,7 +7808,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 1264046155}
@@ -9979,7 +9979,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 658003262}
@@ -13893,7 +13893,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 1672498616}
@@ -14421,7 +14421,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 1997632850}
@@ -16810,7 +16810,7 @@ MonoBehaviour:
   startDimensionIndex: 1
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 7061596458163373781}
@@ -17610,7 +17610,7 @@ MonoBehaviour:
   startDimensionIndex: 1
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 7970879390524404361}
@@ -19525,7 +19525,7 @@ MonoBehaviour:
   startDimensionIndex: 1
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 8801077210950037187}
@@ -23686,7 +23686,7 @@ MonoBehaviour:
   startDimensionIndex: 1
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 6413889393414999072}
@@ -24842,7 +24842,7 @@ GameObject:
   - component: {fileID: 1900320861754910222}
   - component: {fileID: 4529492485179973218}
   - component: {fileID: 2487395090356924701}
-  - component: {fileID: 7937653310642555388}
+  - component: {fileID: 4943773360439672407}
   m_Layer: 0
   m_Name: ToggleFeaturesPanel
   m_TagString: Untagged
@@ -24850,6 +24850,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4943773360439672407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943773360439672406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b593189292c83143a4511f75b338b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profilerButton: {fileID: 157292886402471085}
+  handMeshButton: {fileID: 1869750913728347323}
+  handJointsButton: {fileID: 959061153092952305}
+  objectManagerPanel: {fileID: 4238929520401227352}
 --- !u!4 &4964422385016101494
 Transform:
   m_ObjectHideFlags: 0
@@ -25949,7 +25965,7 @@ MonoBehaviour:
   startDimensionIndex: 1
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 3963564654542343267}
@@ -29468,22 +29484,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &7937653310642555388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4943773360439672406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed961c399800584ba77a743bcd9275c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profilerButton: {fileID: 157292886402471085}
-  handMeshButton: {fileID: 1869750913728347323}
-  handJointsButton: {fileID: 959061153092952305}
-  objectManagerButton: {fileID: 4238929520401227352}
 --- !u!23 &7941810354163278808
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30790,7 +30790,7 @@ MonoBehaviour:
   startDimensionIndex: 0
   CanSelect: 1
   CanDeselect: 1
-  voiceCommand: Select
+  VoiceCommand: 
   voiceRequiresFocus: 1
   profiles:
   - Target: {fileID: 2137980502853472314}

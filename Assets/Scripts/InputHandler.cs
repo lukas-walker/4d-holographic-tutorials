@@ -19,7 +19,7 @@ namespace Tutorials
 
 
         public Button recordButton;
-        public Button playButton;
+        public PressableButtonHoloLens2 playButton;
         public Button editNameButton;
 
         public GameObject sceneNameField;

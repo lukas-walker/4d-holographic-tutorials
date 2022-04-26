@@ -135,7 +135,10 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: -5395747893707670044, guid: 293805ab2e02c3a498f6be744fb430a3, type: 2}
+  - {fileID: 8553191836209244501, guid: 8810a952206202a428b650763f2247aa, type: 2}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -613,11 +616,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: 4DHolographicTutorials
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: 3DVision2022
+  metroCertificateIssuer: 3DVision2022
+  metroCertificateNotAfter: 8032678d0677d901
   metroApplicationDescription: 4D holographic tutorials
   wsaImages: {}
   metroTileShortName: 4DHolographicTutorials
@@ -644,6 +647,7 @@ PlayerSettings:
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 
+  vcxProjDefaultLanguage: 
   XboxOneProductId: 
   XboxOneUpdateKey: 
   XboxOneSandboxId: 

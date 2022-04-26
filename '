@@ -1,0 +1,11 @@
+Update scene name label using buttons
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch lukas
+# Your branch is up to date with 'origin/lukas'.
+#
+# Changes to be committed:
+#	modified:   Assets/Scenes/4DTutorialScene.unity
+#	modified:   Assets/Scripts/InputHandler.cs
+#

@@ -187,6 +187,7 @@ namespace Tutorials
         /// </summary>
         public void Next()
         {
+            Debug.Log("Next button pressed!");
             FileHandler.AnimationListInstance.Next();
         }
 
@@ -195,6 +196,7 @@ namespace Tutorials
         /// </summary>
         public void Previous()
         {
+            Debug.Log("Previous button pressed!");
             FileHandler.AnimationListInstance.Previous();
         }
 

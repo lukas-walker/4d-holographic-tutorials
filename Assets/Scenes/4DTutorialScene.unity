@@ -1741,18 +1741,26 @@ PrefabInstance:
     - target: {fileID: 2606339085599451000, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 631031621}
     - target: {fileID: 2606339085599451000, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Increment
+      value: Next
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606339085599451000, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Tutorials.InputHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2606339086037297427, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 631031622}
     - target: {fileID: 2606339086037297427, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Increment
+      value: Previous
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606339086037297427, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Tutorials.InputHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2979745883745561993, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
       propertyPath: iconStyle
@@ -1998,6 +2006,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4857302741176781275, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
+      propertyPath: m_Name
+      value: NextButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4857302741547517872, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
+      propertyPath: m_Name
+      value: PreviousButton
+      objectReference: {fileID: 0}
     - target: {fileID: 4857302741700681004, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
       propertyPath: m_text
       value: 'Play
@@ -2102,6 +2118,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
+--- !u!1 &631031619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4857302741176781275, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
+  m_PrefabInstance: {fileID: 631031618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &631031620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4857302741547517872, guid: 13a98fb31f16fe6459056db9f73a215d, type: 3}
+  m_PrefabInstance: {fileID: 631031618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &631031621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631031619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e548f67c357724db19d7e962c26629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recorder: {fileID: 0}
+  player: {fileID: 1246967730}
+  animationSpecificPointOfReference: {fileID: 0}
+  recordButton: {fileID: 0}
+  playButton: {fileID: 0}
+  editNameButton: {fileID: 0}
+  sceneNameField: {fileID: 0}
+  sceneNameField2: {fileID: 0}
+  sceneNameLabel: {fileID: 0}
+--- !u!114 &631031622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631031620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e548f67c357724db19d7e962c26629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recorder: {fileID: 0}
+  player: {fileID: 0}
+  animationSpecificPointOfReference: {fileID: 0}
+  recordButton: {fileID: 0}
+  playButton: {fileID: 0}
+  editNameButton: {fileID: 0}
+  sceneNameField: {fileID: 0}
+  sceneNameField2: {fileID: 0}
+  sceneNameLabel: {fileID: 0}
 --- !u!1 &660156580
 GameObject:
   m_ObjectHideFlags: 0

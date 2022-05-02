@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Input;
+using TMPro;
 
 namespace Tutorials
 {
@@ -25,7 +26,7 @@ namespace Tutorials
         public GameObject sceneNameField;
         public InputField sceneNameField2;
 
-        public Text sceneNameLabel;
+        public TextMeshProUGUI sceneNameLabel;
 
 
         private bool isUpdatingName = false; // Specifies if scene name is currently being updated
@@ -233,6 +234,7 @@ namespace Tutorials
         /// </summary>
         public void EditSceneName()
         {
+            Debug.Log("Edit this scene name right now!");
             if (isUpdatingName)
             {
                 isUpdatingName = false;

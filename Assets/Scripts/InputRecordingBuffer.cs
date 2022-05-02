@@ -107,7 +107,15 @@ namespace Tutorials
 
             public Dictionary<TrackedHandJoint, TransformData> LeftJointsTransformData { get; set; }
             public Dictionary<TrackedHandJoint, TransformData> RightJointsTransformData { get; set; }
+            /// <summary>
+            /// Holds transformation data for each object recorded
+            /// </summary>
+            public Dictionary<string, TransformData> ObjectsTransformData { get; set; }
 
+            /// <summary>
+            /// Initialize the data structures to hold the joint/object transformations for a time-specific keyframe
+            /// </summary>
+            /// <param name="time"></param>
             public Keyframe(float time)
             {
                 Time = time;
@@ -115,6 +123,7 @@ namespace Tutorials
                 RightJoints = new Dictionary<TrackedHandJoint, MixedRealityPose>();
                 LeftJointsTransformData = new Dictionary<TrackedHandJoint, TransformData>();
                 RightJointsTransformData = new Dictionary<TrackedHandJoint, TransformData>();
+                ObjectsTransformData = new Dictionary<string, TransformData>();
             }
         }
 
@@ -212,6 +221,11 @@ namespace Tutorials
             {
                 currentKeyframe.RightJointsTransformData.Add(joint, new TransformData(transform));
             }
+        }
+
+        public void SetObjectState(Transform objectTransform)
+        {
+            return;
         }
 
         /// <summary>

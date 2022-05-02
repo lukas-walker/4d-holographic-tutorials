@@ -6,7 +6,6 @@
 public class ObjectManagerPanel : MonoBehaviour
 {
     public GameObject panel;
-    private bool showObjectManager = false;
     private void Start()
     {
         panel.SetActive(false);
@@ -17,7 +16,6 @@ public class ObjectManagerPanel : MonoBehaviour
     /// </summary>
     public void ToggleObjectManager()
     {
-        showObjectManager = !showObjectManager;
-        panel.SetActive(showObjectManager);
+        panel.SetActive(!panel.activeSelf);
     }
 }

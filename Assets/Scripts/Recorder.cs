@@ -25,6 +25,8 @@ namespace Tutorials
         private GameObject handRightPrefab;
         private GameObject recordingHandRight;
 
+        private List<GameObject> objectList;
+
         [SerializeField]
         [Tooltip("The point of reference that can be set for each animation specifically (will be stored in animation entity). Default is (0,0,0),(0,0,0,1)")]
         private Transform animationSpecificPointOfReference;
@@ -85,6 +87,29 @@ namespace Tutorials
             }
         }
 
+        /// <summary>
+        /// Set the objectList variable to a collection of instantiated objects currently active and meant to be tracked
+        /// </summary>
+        private void SetActiveObjectList()
+        {
+            objectList = new List<GameObject>();
+            GameObject objectCollection = GameObject.Find("Objects");
+            if (objectCollection == null) return;
+            foreach(Transform child in objectCollection.transform)
+            {
+                // Only consider active objects to be recorded.
+                if (child.gameObject.activeSelf)
+                {
+                    Transform childClone = Instantiate(child);
+                    // The clone of the object should not be visible to the user (only later once the animation is played).
+                    childClone.gameObject.SetActive(false);
+                    // Make sure the new object exists in reference to the animation specific point of view
+                    childClone.parent = animationSpecificPointOfReference.transform;
+                    objectList.Add(childClone.gameObject);
+                }
+            }
+        }
+
         private void Start()
         {
             // instatiate the (invisible) hand model that is used by the recording service
@@ -100,6 +125,10 @@ namespace Tutorials
             recordingHandRight.name = "RecorderRightHand";
 
             InitializeDictionary(recordingHandLeft.transform, recordingHandRight.transform);
+
+            // Get all active objects to track in the scene
+            //SetActiveObjectList();
+
         }
 
 
@@ -498,6 +527,7 @@ namespace Tutorials
 
             RecordInputHandData(Handedness.Left);
             RecordInputHandData(Handedness.Right);
+            RecordInputObjects();
         }
 
         /// <summary>
@@ -578,6 +608,17 @@ namespace Tutorials
                     }
                 }
 
+            }
+        }
+
+        /// <summary>
+        /// Records the transformations for each object in the current key frame
+        /// </summary>
+        private void RecordInputObjects()
+        {
+            foreach(GameObject o in objectList)
+            {
+                RecordingBuffer.SetObjectState(o.transform);
             }
         }
 

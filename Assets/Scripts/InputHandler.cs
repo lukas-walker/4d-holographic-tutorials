@@ -19,7 +19,7 @@ namespace Tutorials
         private Transform animationSpecificPointOfReference;
 
 
-        public Button recordButton;
+        public PressableButtonHoloLens2 recordButton;
         public PressableButtonHoloLens2 playButton;
         public Button editNameButton;
 
@@ -90,6 +90,7 @@ namespace Tutorials
         /// </summary>
         public void RecordButtonAction()
         {
+            Debug.Log("Record button pressed");
             // TODO: Grey-out/disable non-recording buttons while recording
             if (recorder.IsRecording)
             {
@@ -134,11 +135,18 @@ namespace Tutorials
         /// </summary>
         private void OnStartRecording()
         {
-            ColorBlock colors = recordButton.colors;
-            colors.normalColor = new Color(0.7f, 0.7f, 0.7f, 1.0f); // Light grey
-            recordButton.colors = colors;
+            // ColorBlock colors = recordButton.colors;
+            // colors.normalColor = new Color(0.7f, 0.7f, 0.7f, 1.0f); // Light grey
+            // recordButton.colors = colors;
 
-            recordButton.GetComponentInChildren<Text>().text = "Stop Recording";
+            //recordButton.GetComponentInChildren<TextMeshPro>().text = "Stop Recording";
+
+            /*Component[] components = recordButton.GetComponentInChildren<PressableButtonHoloLens2>().GetComponents(typeof(Component));
+            Debug.Log("GETTING COMPONENTS");
+            foreach (Component component in components)
+            {
+                Debug.Log(component.ToString());
+            }*/
 
             Debug.Log("Starting recording");
         }
@@ -148,13 +156,13 @@ namespace Tutorials
         /// </summary>
         private void OnStopRecording()
         {
-            ColorBlock colors = recordButton.colors;
-            colors.normalColor = new Color(0.9f, 0.0f, 0.0f, 1.0f); // Light grey
-            recordButton.colors = colors;
+            //ColorBlock colors = recordButton.colors;
+            //colors.normalColor = new Color(0.9f, 0.0f, 0.0f, 1.0f); // Light grey
+            //recordButton.colors = colors;
 
-            recordButton.GetComponentInChildren<Text>().text = "Record";
+            //recordButton.GetComponentInChildren<TextMeshPro>().text = "Record";
 
-            playButton.GetComponentInChildren<Text>().text = "■";
+            //playButton.GetComponentInChildren<Text>().text = "■";
             Debug.Log("Stopping recording");
             SaveAnimation();
         }
@@ -218,12 +226,12 @@ namespace Tutorials
             if (player.IsPlaying())
             {
                 player.Stop();
-                playButton.GetComponentInChildren<Text>().text = "▶";
+                playButton.GetComponentInChildren<TextMeshPro>().text = "▶";
             }
             else
             {
                 player.Start();
-                playButton.GetComponentInChildren<Text>().text = "■";
+                playButton.GetComponentInChildren<TextMeshPro>().text = "■";
             }
 
 

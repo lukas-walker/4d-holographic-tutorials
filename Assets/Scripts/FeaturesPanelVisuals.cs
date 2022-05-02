@@ -13,8 +13,6 @@ namespace Microsoft.MixedReality.Toolkit.UI
     internal class FeaturesPanelVisuals : MonoBehaviour
     {
         [SerializeField]
-        private Interactable profilerButton = null;
-        [SerializeField]
         private Interactable handMeshButton = null;
         [SerializeField]
         private Interactable handJointsButton = null;
@@ -23,8 +21,6 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
         private void Start()
         {
-            profilerButton.IsToggled = (CoreServices.DiagnosticsSystem?.ShowProfiler).GetValueOrDefault(false);
-
             MixedRealityHandTrackingProfile handProfile = null;
             if (CoreServices.InputSystem?.InputSystemProfile != null)
             {

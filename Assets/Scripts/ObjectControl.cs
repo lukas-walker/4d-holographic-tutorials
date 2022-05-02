@@ -8,7 +8,6 @@ using UnityEngine;
 public class ObjectControl : MonoBehaviour
 {
     public GameObject objectModel;
-    private bool showObject = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +15,21 @@ public class ObjectControl : MonoBehaviour
     }
 
     /// <summary>
+    /// Set the position of the spawned object relative to the object manager panel
+    /// </summary>
+    public void SetManagerRelativePosition()
+    {
+        GameObject panel = GameObject.Find("ObjectManagerPanel");
+        if (panel != null)
+            objectModel.transform.SetPositionAndRotation(panel.transform.position + new Vector3(.0f, .075f, .05f), objectModel.transform.rotation);
+    }
+
+    /// <summary>
     /// Toggles the assigned object
     /// </summary>
     public void ToggleObject()
     {
-        showObject = !showObject;
-        objectModel.SetActive(showObject);
+        SetManagerRelativePosition();
+        objectModel.SetActive(!objectModel.activeSelf);
     }
 }

@@ -22,6 +22,7 @@ namespace Tutorials
         public PressableButtonHoloLens2 recordButton;
         public PressableButtonHoloLens2 playButton;
         public Button editNameButton;
+        public PressableButtonHoloLens2 addBoundingBoxButton;
 
         public GameObject sceneNameField;
         public InputField sceneNameField2;
@@ -247,6 +248,9 @@ namespace Tutorials
             {
                 isUpdatingName = false;
 
+                // Save the name to the animation file instance 
+                recorder.NameCurrentAnimation(sceneNameField2.text);
+
                 // Update the scene name label
                 sceneNameLabel.text = sceneNameField2.text;
 
@@ -254,7 +258,7 @@ namespace Tutorials
                 sceneNameField.SetActive(false);
 
                 // Change the edit button to say "✎"
-                editNameButton.GetComponentInChildren<Text>().text = "✎";
+                editNameButton.GetComponentInChildren<Text>().text = "Edit Name";
             }
             else
             {
@@ -266,9 +270,14 @@ namespace Tutorials
                 // Change edit button to say "Done"
                 editNameButton.GetComponentInChildren<Text>().text = "Done";
             }
+        }
 
-
-
+        /// <summary>
+        /// Add an object's bounding box to a scene that will function as a virtual representation of a real-world object
+        /// </summary>
+        public void AddBoundingBox()
+        {
+            Debug.Log("Adding a bounding box");
         }
         
         /// <summary>

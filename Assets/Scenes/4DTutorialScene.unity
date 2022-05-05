@@ -474,6 +474,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 244113801}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -629,6 +630,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -950,6 +952,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -1021,6 +1024,7 @@ MonoBehaviour:
   recordButton: {fileID: 410949938}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -1135,7 +1139,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434212376}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4684083f6dff4a1d8a790bccc354fcf4, type: 3}
   m_Name: 
@@ -1900,6 +1904,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -1921,6 +1926,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -2120,6 +2126,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 244113801}
   sceneNameField2: {fileID: 244113803}
   sceneNameLabel: {fileID: 0}
@@ -2398,6 +2405,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -2435,6 +2443,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 886703627}
   sceneNameField2: {fileID: 886703629}
   sceneNameLabel: {fileID: 0}
@@ -3021,6 +3030,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -3158,7 +3168,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 316800718, guid: 45fd0ad89d6d17b4fbe68eb48dbe9de9, type: 3}
       propertyPath: m_Name
-      value: AddBoundingBoxButton
+      value: AddObjectButton
       objectReference: {fileID: 0}
     - target: {fileID: 937783102, guid: 45fd0ad89d6d17b4fbe68eb48dbe9de9, type: 3}
       propertyPath: m_text
@@ -3256,7 +3266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 156863744684443484, guid: 45fd0ad89d6d17b4fbe68eb48dbe9de9, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: RecordButtonAction
+      value: AddBoundingBox
       objectReference: {fileID: 0}
     - target: {fileID: 156863744684443484, guid: 45fd0ad89d6d17b4fbe68eb48dbe9de9, type: 3}
       propertyPath: ButtonPressed.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -3322,17 +3332,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 316800718, guid: 45fd0ad89d6d17b4fbe68eb48dbe9de9, type: 3}
   m_PrefabInstance: {fileID: 1261146251}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1261146254 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 156863744684443484, guid: 45fd0ad89d6d17b4fbe68eb48dbe9de9, type: 3}
-  m_PrefabInstance: {fileID: 1261146251}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1261146253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f98e7663599230e419addf153615c144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1261146255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3348,9 +3347,10 @@ MonoBehaviour:
   recorder: {fileID: 297831696}
   player: {fileID: 1246967730}
   animationSpecificPointOfReference: {fileID: 0}
-  recordButton: {fileID: 1261146254}
+  recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -3619,6 +3619,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 1497436248}
@@ -3893,6 +3894,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 1733248766}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -4308,6 +4310,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -4726,6 +4729,7 @@ MonoBehaviour:
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 0}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 0}
   sceneNameField2: {fileID: 0}
   sceneNameLabel: {fileID: 0}
@@ -6105,12 +6109,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e548f67c357724db19d7e962c26629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recorder: {fileID: 0}
+  recorder: {fileID: 297831696}
   player: {fileID: 0}
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   playButton: {fileID: 0}
   editNameButton: {fileID: 1162092070766896030}
+  addBoundingBoxButton: {fileID: 0}
   sceneNameField: {fileID: 886703627}
   sceneNameField2: {fileID: 886703629}
   sceneNameLabel: {fileID: 1497436248}

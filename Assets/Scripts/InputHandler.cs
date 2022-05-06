@@ -20,13 +20,15 @@ namespace Tutorials
 
 
         public PressableButtonHoloLens2 recordButton;
-        public PressableButtonHoloLens2 playButton;
-        public Button editNameButton;
         public PressableButtonHoloLens2 addBoundingBoxButton;
 
+        public PressableButtonHoloLens2 playButton;
+        public TextMeshPro sceneNumberLabel;
+
+
+        public Button editNameButton;
         public GameObject sceneNameField;
         public InputField sceneNameField2;
-
         public TextMeshProUGUI sceneNameLabel;
 
 
@@ -72,6 +74,8 @@ namespace Tutorials
             // adding all the listeners to UnityEvents, C# Events and Actions
             recorder.OnRecordingStarted.AddListener(OnStartRecording);
             recorder.OnRecordingStopped.AddListener(OnStopRecording);
+
+            sceneNameLabel.text = "World, Hello!";
         }
 
         /// <summary>
@@ -95,7 +99,7 @@ namespace Tutorials
             // TODO: Grey-out/disable non-recording buttons while recording
             if (recorder.IsRecording)
             {
-                 SaveAnimation();
+                SaveAnimation();
             }
             else
             {
@@ -140,8 +144,6 @@ namespace Tutorials
             // colors.normalColor = new Color(0.7f, 0.7f, 0.7f, 1.0f); // Light grey
             // recordButton.colors = colors;
 
-            //recordButton.GetComponentInChildren<TextMeshPro>().text = "Stop Recording";
-
             /*Component[] components = recordButton.GetComponentInChildren<PressableButtonHoloLens2>().GetComponents(typeof(Component));
             Debug.Log("GETTING COMPONENTS");
             foreach (Component component in components)
@@ -150,6 +152,10 @@ namespace Tutorials
             }*/
 
             Debug.Log("Starting recording");
+            Debug.Log(recordButton.MovingButtonIconText);
+            recordButton.GetComponentInChildren<TextMeshPro>().text = "Stop Recording";
+            //var colorTheme = this.GetComponent<Interactable>().ActiveThemes[0];
+            //colorTheme.StateProperties[0].Values[0].Color = Color.green;
         }
 
         /// <summary>
@@ -165,6 +171,7 @@ namespace Tutorials
 
             //playButton.GetComponentInChildren<Text>().text = "■";
             Debug.Log("Stopping recording");
+            recordButton.GetComponentInChildren<TextMeshPro>().text = "Record Step";
             SaveAnimation();
         }
 

@@ -75,7 +75,7 @@ namespace Tutorials
             recorder.OnRecordingStarted.AddListener(OnStartRecording);
             recorder.OnRecordingStopped.AddListener(OnStopRecording);
 
-            sceneNameLabel.text = "World, Hello!";
+            sceneNumberLabel.text = "World, Hello!";
         }
 
         /// <summary>

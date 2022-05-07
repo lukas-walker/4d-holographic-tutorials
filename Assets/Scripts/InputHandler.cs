@@ -75,7 +75,18 @@ namespace Tutorials
             recorder.OnRecordingStarted.AddListener(OnStartRecording);
             recorder.OnRecordingStopped.AddListener(OnStopRecording);
 
-            sceneNumberLabel.text = "World, Hello!";
+            if (FileHandler.AnimationListInstance.CurrentNode == null)
+            {
+                // No current animation loaded/found
+                sceneNumberLabel.text = "--/";
+            }
+            else
+            {
+                sceneNumberLabel.text = (FileHandler.AnimationListInstance.GetCurrentAnimationIndex() + 1).ToString() + "/";
+            }
+
+            sceneNumberLabel.text += FileHandler.AnimationListInstance.Count.ToString();
+            sceneNumberLabel.text = "Step " + sceneNumberLabel.text;
         }
 
         /// <summary>
@@ -152,8 +163,8 @@ namespace Tutorials
             }*/
 
             Debug.Log("Starting recording");
-            Debug.Log(recordButton.MovingButtonIconText);
-            recordButton.GetComponentInChildren<TextMeshPro>().text = "Stop Recording";
+            //Debug.Log(recordButton.MovingButtonIconText);
+            //recordButton.GetComponentInChildren<TextMeshPro>().text = "Stop Recording";
             //var colorTheme = this.GetComponent<Interactable>().ActiveThemes[0];
             //colorTheme.StateProperties[0].Values[0].Color = Color.green;
         }
@@ -171,7 +182,7 @@ namespace Tutorials
 
             //playButton.GetComponentInChildren<Text>().text = "■";
             Debug.Log("Stopping recording");
-            recordButton.GetComponentInChildren<TextMeshPro>().text = "Record Step";
+            //recordButton.GetComponentInChildren<TextMeshPro>().text = "Record Step";
             SaveAnimation();
         }
 

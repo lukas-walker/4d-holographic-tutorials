@@ -88,6 +88,26 @@ namespace Tutorials
             set => currentNode = value;
         }
 
+
+        public int Count
+        {
+            get { return animations.Count; }
+        }
+
+        public int GetCurrentAnimationIndex()
+        {
+            int i = 0;
+            for (LinkedListNode<AnimationWrapper> node = animations.First; node != null; node = node.Next)
+            {
+                if (node == currentNode)
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
+
         /// <summary>
         /// Access method for the animation entity that is currently active and open in the editor
         /// </summary>

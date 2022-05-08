@@ -299,7 +299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &93527581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -652,6 +652,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -809,7 +810,7 @@ GameObject:
   - component: {fileID: 739312271}
   - component: {fileID: 739312272}
   m_Layer: 0
-  m_Name: CoffeeCup2
+  m_Name: BoundingBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -851,7 +852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271597174}
   m_LocalRotation: {x: -0, y: -0.26351738, z: -0, w: 0.9646546}
-  m_LocalPosition: {x: -0.47564486, y: -0.23599997, z: 0.69260806}
+  m_LocalPosition: {x: 0, y: -0.096, z: 0.4}
   m_LocalScale: {x: 0.05918, y: 0.05918, z: 0.05918}
   m_Children:
   - {fileID: 1495589082}
@@ -1013,6 +1014,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 2087736411}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -1182,6 +1184,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 601491509}
   editNameButton: {fileID: 0}
@@ -1355,6 +1358,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 2087736411}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -1428,6 +1432,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 2087736411}
   recordButton: {fileID: 410949938}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -1535,7 +1540,7 @@ MonoBehaviour:
   trackedHandness: 3
   trackedHandJoint: 2
   transformOverride: {fileID: 0}
-  additionalOffset: {x: -0.12, y: -0.2, z: 0}
+  additionalOffset: {x: -0.1, y: -0.2, z: 0}
   additionalRotation: {x: 0, y: -15, z: 0}
   updateSolvers: 1
 --- !u!114 &434212380
@@ -1545,7 +1550,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434212376}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4684083f6dff4a1d8a790bccc354fcf4, type: 3}
   m_Name: 
@@ -1913,6 +1918,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 2087736411}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 601491509}
   editNameButton: {fileID: 0}
@@ -2520,6 +2526,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -2543,6 +2550,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -3087,6 +3095,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -3194,7 +3203,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801323449}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4684083f6dff4a1d8a790bccc354fcf4, type: 3}
   m_Name: 
@@ -3368,6 +3377,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -3407,6 +3417,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -3995,6 +4006,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -4306,7 +4318,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261146253}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64e548f67c357724db19d7e962c26629, type: 3}
   m_Name: 
@@ -4316,6 +4328,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 1261146260}
+  boundingBox: {fileID: 271597174}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -4692,6 +4705,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -4795,7 +4809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1532377564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5147,6 +5161,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 1733248766}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -5564,6 +5579,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -5984,6 +6000,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 2087736411}
   recordButton: {fileID: 410949938}
   addBoundingBoxButton: {fileID: 1261146260}
+  boundingBox: {fileID: 271597174}
   playButton: {fileID: 1733248766}
   sceneNumberLabel: {fileID: 601491509}
   editNameButton: {fileID: 1162092070766896030}
@@ -7105,6 +7122,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 0}
@@ -7472,6 +7490,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 0}
   recordButton: {fileID: 0}
   addBoundingBoxButton: {fileID: 0}
+  boundingBox: {fileID: 0}
   playButton: {fileID: 0}
   sceneNumberLabel: {fileID: 0}
   editNameButton: {fileID: 1162092070766896030}

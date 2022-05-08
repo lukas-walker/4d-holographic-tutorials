@@ -18,14 +18,16 @@ namespace Tutorials
         [SerializeField]
         private Transform animationSpecificPointOfReference;
 
-
+        // Record Bar
         public PressableButtonHoloLens2 recordButton;
         public PressableButtonHoloLens2 addBoundingBoxButton;
+        public GameObject boundingBox;
 
+        // Playback Bar
         public PressableButtonHoloLens2 playButton;
         public TextMeshPro sceneNumberLabel;
 
-
+        // Scene Name Bar
         public Button editNameButton;
         public GameObject sceneNameField;
         public InputField sceneNameField2;
@@ -87,6 +89,7 @@ namespace Tutorials
 
             sceneNumberLabel.text += FileHandler.AnimationListInstance.Count.ToString();
             sceneNumberLabel.text = "Step " + sceneNumberLabel.text;
+            boundingBox.SetActive(false);
         }
 
         /// <summary>
@@ -296,6 +299,14 @@ namespace Tutorials
         public void AddBoundingBox()
         {
             Debug.Log("Adding a bounding box");
+            if (boundingBox.activeSelf)
+            {
+                boundingBox.SetActive(false);
+            }
+            else
+            {
+                boundingBox.SetActive(true);
+            }
         }
         
         /// <summary>

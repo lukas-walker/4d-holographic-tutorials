@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 
 
@@ -75,6 +76,22 @@ namespace Tutorials
         /// </summary>
         private RiggedHandVisualizer riggedHandVisualizerRight;
 
+        /// <summary>
+        /// Is set at the start of each animation to the objects to be animated
+        /// </summary>
+        private List<GameObject> objectList;
+
+        /// <summary>
+        /// A list of essential components to retain
+        /// </summary>
+        public static readonly string[] essentialComponents = { "Transform", "MeshFilter", "MeshRenderer", "ConstraintManager" };
+
+        /// <summary>
+        /// Material to be used for the animated objects
+        /// </summary>
+        [SerializeField]
+        private Material animatingMaterial;
+
         private bool startAgain = false;
 
         /// <summary>
@@ -110,7 +127,6 @@ namespace Tutorials
 
             // if the current animation in the editor changes, the new animation will be loaded and played back in the playback service.
             FileHandler.AnimationListInstance.CurrentAnimationChanged.AddListener(PlayCurrent);
-
 
             PlayCurrent();
         }
@@ -149,6 +165,51 @@ namespace Tutorials
         }
 
         /// <summary>
+        /// Remove all components not needed for animation
+        /// </summary>
+        private void RemoveNonEssentialComponents(GameObject obj)
+        {
+            foreach (var comp in obj.GetComponents<Component>())
+            {
+                Debug.Log($"Component: {comp.GetType().Name}");
+                if (!essentialComponents.Contains(comp.GetType().Name))
+                {
+                    Destroy(comp);
+                }
+            }
+            Destroy(obj.GetComponent<ConstraintManager>());
+        }
+
+        /// <summary>
+        /// Create clones of every object used in the animation and add to list.
+        /// Update the curves associated name
+        /// </summary>
+        public void InstantiateObjects()
+        {
+            // No recording exists at the moment
+            if (animation == null) return;
+
+            // Initialize a new object list
+            objectList = new List<GameObject>();
+
+            foreach(var entry in animation.objectCurves)
+            {
+                string originalName = entry.Key.Substring(0, entry.Key.LastIndexOf("(Clone)"));
+                GameObject obj = GameObject.Find(originalName);
+                if (obj == null)
+                {
+                    Debug.Log($"GameObject with name {originalName} could not be found.");
+                    continue;
+                }
+                GameObject clone = Instantiate(obj, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
+                RemoveNonEssentialComponents(clone);
+                clone.SetActive(false);
+                clone.transform.parent = animationSpecificPointOfReference;
+                clone.name = entry.Key;
+                objectList.Add(clone);
+            }
+        }
+        /// <summary>
         /// Plays the specified animation wrapper (assuming the animation data is available).
         /// If animationWrapper is null, this method will stop the playback. 
         /// </summary>
@@ -165,6 +226,10 @@ namespace Tutorials
 
             this.animationWrapper = animationWrapper;
             animation = animationWrapper.Animation;
+
+            // Get all objects from the animation and make them available
+            InstantiateObjects();
+
             Play();
         }
 
@@ -235,11 +300,15 @@ namespace Tutorials
         /// Evaluate the animation at localTime
         private void Evaluate()
         {
-            // if no replay is currently happening, both hands are set invisible
+            // if no replay is currently happening, both hands and all objects are set invisible
             if (!isPlaying)
             {
                 riggedHandLeft.gameObject.SetActive(false);
                 riggedHandRight.gameObject.SetActive(false);
+                foreach(var obj in objectList)
+                {
+                    obj.SetActive(false);
+                }
                 return;
             }
             // otherwise, only the hands that are supposed to be visible are set to visible state. 
@@ -255,6 +324,10 @@ namespace Tutorials
                     riggedHandRight.gameObject.SetActive(false);
                 }
                 else riggedHandRight.gameObject.SetActive(true);
+                foreach(var obj in objectList)
+                {
+                    obj.SetActive(true);
+                }
             }
 
             if (animation == null)
@@ -270,6 +343,20 @@ namespace Tutorials
             {
                 if (animationWrapper.LeftHand) EvaluateHandData(Handedness.Left);
                 if (animationWrapper.RightHand) EvaluateHandData(Handedness.Right);
+            }
+
+            EvaluateObjectData();
+        }
+
+        /// <summary>
+        /// Update object positions and rotations
+        /// </summary>
+        private void EvaluateObjectData()
+        {
+            foreach(var obj in objectList)
+            {
+                TransformData data = animation.EvaluateObject(localTime, obj.name);
+                obj.transform.SetPositionAndRotation(data.GetPosition(), data.GetRotation());
             }
         }
 

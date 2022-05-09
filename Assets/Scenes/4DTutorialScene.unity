@@ -8767,6 +8767,7 @@ MonoBehaviour:
   animationSpecificPointOfReference: {fileID: 2087736411}
   riggedHandLeftPrefab: {fileID: 61451597023024772, guid: 1418fb634c66d814cbe04341d3c87db4, type: 3}
   riggedHandRightPrefab: {fileID: 3512491064599439886, guid: 3551fb80452738f4fa4eabbd79d80667, type: 3}
+  animatingMaterial: {fileID: 2100000, guid: 206fc8328f52f77498ac308b8a8746e5, type: 2}
 --- !u!4 &1246967731
 Transform:
   m_ObjectHideFlags: 0
@@ -12048,7 +12049,7 @@ GameObject:
   - component: {fileID: 1621370691}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Original
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17575,7 +17576,7 @@ GameObject:
   - component: {fileID: 1123591448320341919}
   m_Layer: 0
   m_Name: Basket
-  m_TagString: Untagged
+  m_TagString: Original
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17687,7 +17688,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 1621370685}
+  constraintsManager: {fileID: 1123591448320341923}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
@@ -19610,7 +19611,7 @@ GameObject:
   - component: {fileID: 3028202219766078782}
   m_Layer: 0
   m_Name: iPhone
-  m_TagString: Untagged
+  m_TagString: Original
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20311,7 +20312,7 @@ GameObject:
   - component: {fileID: 3616316547977701512}
   m_Layer: 0
   m_Name: ClosedLaptop
-  m_TagString: Untagged
+  m_TagString: Original
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21149,7 +21150,7 @@ GameObject:
   - component: {fileID: 3819147656940781164}
   m_Layer: 0
   m_Name: Mouse
-  m_TagString: Untagged
+  m_TagString: Original
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21339,7 +21340,7 @@ GameObject:
   - component: {fileID: 3840139832422141812}
   m_Layer: 0
   m_Name: Keyboard
-  m_TagString: Untagged
+  m_TagString: Original
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22547,7 +22548,7 @@ GameObject:
   - component: {fileID: 4686197401079461206}
   m_Layer: 0
   m_Name: Monitor
-  m_TagString: Untagged
+  m_TagString: Original
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26047,7 +26048,7 @@ GameObject:
   - component: {fileID: 7649662259278414849}
   m_Layer: 0
   m_Name: OpenLaptop
-  m_TagString: Untagged
+  m_TagString: Original
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

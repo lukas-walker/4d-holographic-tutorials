@@ -225,7 +225,7 @@ namespace Tutorials
 
         public void SetObjectState(Transform objectTransform)
         {
-            return;
+            currentKeyframe.ObjectsTransformData.Add(objectTransform.name, new TransformData(objectTransform));
         }
 
         /// <summary>

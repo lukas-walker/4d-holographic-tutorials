@@ -25,7 +25,7 @@ namespace Tutorials
         private GameObject handRightPrefab;
         private GameObject recordingHandRight;
 
-        private List<GameObject> objectList;
+        private Dictionary<GameObject, GameObject> objectList;
 
         [SerializeField]
         [Tooltip("The point of reference that can be set for each animation specifically (will be stored in animation entity). Default is (0,0,0),(0,0,0,1)")]
@@ -92,7 +92,7 @@ namespace Tutorials
         /// </summary>
         private void SetActiveObjectList()
         {
-            objectList = new List<GameObject>();
+            objectList = new Dictionary<GameObject, GameObject>();
             GameObject objectCollection = GameObject.Find("Objects");
             if (objectCollection == null) return;
             foreach(Transform child in objectCollection.transform)
@@ -100,12 +100,10 @@ namespace Tutorials
                 // Only consider active objects to be recorded.
                 if (child.gameObject.activeSelf)
                 {
-                    Transform childClone = Instantiate(child);
-                    // The clone of the object should not be visible to the user (only later once the animation is played).
-                    childClone.gameObject.SetActive(false);
-                    // Make sure the new object exists in reference to the animation specific point of view
-                    childClone.parent = animationSpecificPointOfReference.transform;
-                    objectList.Add(childClone.gameObject);
+                    GameObject clone = Instantiate(child.gameObject, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
+                    clone.SetActive(false);
+                    clone.transform.parent = animationSpecificPointOfReference.transform;
+                    objectList.Add(child.gameObject, clone);
                 }
             }
         }
@@ -125,10 +123,6 @@ namespace Tutorials
             recordingHandRight.name = "RecorderRightHand";
 
             InitializeDictionary(recordingHandLeft.transform, recordingHandRight.transform);
-
-            // Get all active objects to track in the scene
-            //SetActiveObjectList();
-
         }
 
 
@@ -153,6 +147,9 @@ namespace Tutorials
                 {
                     unlimitedRecordingStartTime = Time.time;
                 }
+
+                // Get all active objects to track in the scene
+                SetActiveObjectList();
 
                 OnRecordingStarted.Invoke();
             }
@@ -473,7 +470,9 @@ namespace Tutorials
 
         /// <summary>
         /// After both hand models have been moved and adjusted to the user's hand input (like a glove) the pose of each individual joint is saved in a keyframe.
-        /// Note: This "glove" behaviour is a simple way of finding out the relative positions and rotations of each joints. The hand input from MRTK only provides global joint positions and rotations, making this workaround necessary. this way the local position and rotation relative to the animation specific point of reference can be obtained. 
+        /// Note: This "glove" behaviour is a simple way of finding out the relative positions and rotations of each joints.
+        /// The hand input from MRTK only provides global joint positions and rotations, making this workaround necessary.
+        /// This way the local position and rotation relative to the animation specific point of reference can be obtained. 
         /// </summary>
         public void LateUpdate()
         {
@@ -616,9 +615,11 @@ namespace Tutorials
         /// </summary>
         private void RecordInputObjects()
         {
-            foreach(GameObject o in objectList)
+            foreach(var obj in objectList)
             {
-                RecordingBuffer.SetObjectState(o.transform);
+                obj.Value.transform.position = obj.Key.transform.position;
+                obj.Value.transform.rotation = obj.Key.transform.rotation;
+                RecordingBuffer.SetObjectState(obj.Value.transform);
             }
         }
 

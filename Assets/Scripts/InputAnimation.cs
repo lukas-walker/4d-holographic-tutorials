@@ -60,7 +60,7 @@ namespace Tutorials
         }
 
         /// <summary>
-        /// Class that contains all animation curves for one joint (position and rotation)
+        /// Class that contains all animation curves for one joint / object (position and rotation)
         /// </summary>
         public class PoseCurves
         {
@@ -201,6 +201,8 @@ namespace Tutorials
         private PoseCurves cameraCurves;
         [SerializeField]
         private PoseCurves gazeCurves;
+        [SerializeField]
+        public Dictionary<string, PoseCurves> objectCurves;
 
         /// <summary>
         /// Whether the animation has hand state and joint curves
@@ -238,6 +240,7 @@ namespace Tutorials
             handJointCurvesRight = new Dictionary<TrackedHandJoint, PoseCurves>();
             cameraCurves = new PoseCurves();
             gazeCurves = new PoseCurves();
+            objectCurves = new Dictionary<string, PoseCurves>();
             markers = new List<InputAnimationMarker>();
         }
 
@@ -400,6 +403,8 @@ namespace Tutorials
                 PoseCurvesToStream(writer, gazeCurves);
             }
 
+            ObjectCurvesToStream(writer, objectCurves);
+            
             InputAnimationSerializationUtils.WriteMarkerList(writer, markers);
         }
 
@@ -543,6 +548,10 @@ namespace Tutorials
                     AddJointPoseKeys(animation.handJointCurvesLeft, keyframe.LeftJointsTransformData, joint, localTime);
                     AddJointPoseKeys(animation.handJointCurvesRight, keyframe.RightJointsTransformData, joint, localTime);
                 }
+                foreach(var objectData in keyframe.ObjectsTransformData)
+                {
+                    AddObjectPoseKeys(animation.objectCurves, objectData.Value, objectData.Key, localTime);
+                }
             }
 
             animation.ComputeDuration();
@@ -573,6 +582,16 @@ namespace Tutorials
                 }
 
                 curves.AddKey(time, transformData);
+            }
+
+            void AddObjectPoseKeys(Dictionary<string, PoseCurves> objectCurves, TransformData objectTransform, string objectName, float time)
+            {
+                if (!objectCurves.TryGetValue(objectName, out var curves))
+                {
+                    curves = new PoseCurves();
+                    objectCurves.Add(objectName, curves);
+                }
+                curves.AddKey(time, objectTransform);
             }
         }
 
@@ -625,14 +644,15 @@ namespace Tutorials
                     PoseCurvesFromStream(reader, curves);
                 }
 
-
-
             }
 
             if (animation.HasEyeGaze)
             {
                 PoseCurvesFromStream(reader, animation.gazeCurves);
             }
+
+            ObjectCurvesFromStream(reader, animation.objectCurves);
+
 
             InputAnimationSerializationUtils.ReadMarkerList(reader, animation.markers);
             animation.ComputeDuration();
@@ -663,6 +683,7 @@ namespace Tutorials
 
             duration = Mathf.Max(duration, time);
         }
+
 
         /// <summary>
         /// Add a keyframe for one hand joint.
@@ -777,6 +798,19 @@ namespace Tutorials
             }
         }
 
+        public TransformData EvaluateObject(float time, string name)
+        {
+            if (objectCurves.TryGetValue(name, out var curves))
+            {
+                return curves.Evaluate(time);
+            }
+            else
+            {
+                // Zero Identity Transform (pos 0, rot 0)
+                return TransformData.ZeroIdentity();
+            }
+        }
+
         private IEnumerable<AnimationCurve> GetAllAnimationCurves()
         {
             yield return handTrackedCurveLeft;
@@ -804,6 +838,16 @@ namespace Tutorials
                 yield return curves.RotationY;
                 yield return curves.RotationZ;
                 yield return curves.RotationW;
+            }
+
+            foreach(var curves in objectCurves.Values)
+            {
+                yield return curves.PositionX;
+                yield return curves.PositionY;
+                yield return curves.PositionZ;
+                yield return curves.RotationX;
+                yield return curves.RotationY;
+                yield return curves.RotationZ;
             }
 
             yield return cameraCurves.PositionX;
@@ -979,6 +1023,31 @@ namespace Tutorials
             InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.DirectionX);
             InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.DirectionY);
             InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.DirectionZ);
+        }
+
+        private static void ObjectCurvesToStream(BinaryWriter writer, Dictionary<string, PoseCurves> objectCurves)
+        {
+            writer.Write(objectCurves.Count);
+            foreach(var entry in objectCurves)
+            {
+                writer.Write(entry.Key);
+                PoseCurvesToStream(writer, entry.Value);
+            }
+        }
+
+        private static void ObjectCurvesFromStream(BinaryReader reader, Dictionary<string, PoseCurves> objectCurves)
+        {
+            int objectCount = reader.ReadInt32();
+            for (int i = 0; i < objectCount; i++)
+            {
+                string name = reader.ReadString();
+                if (!objectCurves.TryGetValue(name, out var curves))
+                {
+                    curves = new PoseCurves();
+                    objectCurves.Add(name, curves);
+                }
+                PoseCurvesFromStream(reader, curves);
+            }
         }
 
         /// <summary>

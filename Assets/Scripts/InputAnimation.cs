@@ -71,6 +71,9 @@ namespace Tutorials
             public AnimationCurve RotationY = new AnimationCurve();
             public AnimationCurve RotationZ = new AnimationCurve();
             public AnimationCurve RotationW = new AnimationCurve();
+            public AnimationCurve ScaleX = new AnimationCurve();
+            public AnimationCurve ScaleY = new AnimationCurve();
+            public AnimationCurve ScaleZ = new AnimationCurve();
 
             public void AddKey(float time, MixedRealityPose pose)
             {
@@ -94,6 +97,10 @@ namespace Tutorials
                 AddFloatKey(RotationY, time, transformData.roty);
                 AddFloatKey(RotationZ, time, transformData.rotz);
                 AddFloatKey(RotationW, time, transformData.rotw);
+
+                AddFloatKey(ScaleX, time, transformData.scalex);
+                AddFloatKey(ScaleY, time, transformData.scaley);
+                AddFloatKey(ScaleZ, time, transformData.scalez);
             }
 
             /// <summary>
@@ -110,21 +117,16 @@ namespace Tutorials
 
             public TransformData Evaluate(float time)
             {
-                float px = PositionX.Evaluate(time);
-                float py = PositionY.Evaluate(time);
-                float pz = PositionZ.Evaluate(time);
-                float rx = RotationX.Evaluate(time);
-                float ry = RotationY.Evaluate(time);
-                float rz = RotationZ.Evaluate(time);
-                float rw = RotationW.Evaluate(time);
-
                 var transformData = new TransformData(PositionX.Evaluate(time),
                                                 PositionY.Evaluate(time),
                                                 PositionZ.Evaluate(time),
                                                 RotationX.Evaluate(time),
                                                 RotationY.Evaluate(time),
                                                 RotationZ.Evaluate(time),
-                                                RotationW.Evaluate(time));
+                                                RotationW.Evaluate(time),
+                                                ScaleX.Evaluate(time),
+                                                ScaleY.Evaluate(time),
+                                                ScaleZ.Evaluate(time));
 
 
                 return transformData;
@@ -989,6 +991,10 @@ namespace Tutorials
             InputAnimationSerializationUtils.WriteFloatCurveSimple(writer, curves.RotationY);
             InputAnimationSerializationUtils.WriteFloatCurveSimple(writer, curves.RotationZ);
             InputAnimationSerializationUtils.WriteFloatCurveSimple(writer, curves.RotationW);
+            
+            InputAnimationSerializationUtils.WriteFloatCurveSimple(writer, curves.ScaleX);
+            InputAnimationSerializationUtils.WriteFloatCurveSimple(writer, curves.ScaleY);
+            InputAnimationSerializationUtils.WriteFloatCurveSimple(writer, curves.ScaleZ);
         }
 
         private static void PoseCurvesFromStream(BinaryReader reader, PoseCurves curves)
@@ -1001,6 +1007,10 @@ namespace Tutorials
             InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.RotationY);
             InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.RotationZ);
             InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.RotationW);
+
+            InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.ScaleX);
+            InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.ScaleY);
+            InputAnimationSerializationUtils.ReadFloatCurveSimple(reader, curves.ScaleZ);
         }
 
         private static void RayCurvesToStream(BinaryWriter writer, RayCurves curves)

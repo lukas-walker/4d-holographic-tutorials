@@ -357,7 +357,8 @@ namespace Tutorials
             {
                 TransformData data = animation.EvaluateObject(localTime, obj.name);
                 obj.transform.SetPositionAndRotation(data.GetPosition(), data.GetRotation());
-            }
+                obj.transform.localScale = data.GetScale();
+            } 
         }
 
 

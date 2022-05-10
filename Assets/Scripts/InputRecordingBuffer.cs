@@ -21,9 +21,13 @@ namespace Tutorials
         public float rotz;
         public float rotw;
 
+        public float scalex;
+        public float scaley;
+        public float scalez;
+
         public static TransformData ZeroIdentity()
         {
-            return new TransformData(0, 0, 0, 0, 0, 0, 1);
+            return new TransformData(0, 0, 0, 0, 0, 0, 1, 1, 1, 1);
         }
 
         public TransformData(Transform transform)
@@ -36,15 +40,22 @@ namespace Tutorials
             roty = transform.localRotation.y;
             rotz = transform.localRotation.z;
             rotw = transform.localRotation.w;
+            
+            scalex = transform.localScale.x;
+            scaley = transform.localScale.y;
+            scalez = transform.localScale.z;
         }
 
         public TransformData(float posx,
-                                float posy,
-                                float posz,
-                                float rotx,
-                                float roty,
-                                float rotz,
-                                float rotw)
+                             float posy,
+                             float posz,
+                             float rotx,
+                             float roty,
+                             float rotz,
+                             float rotw,
+                             float scalex,
+                             float scaley,
+                             float scalez)
         {
             this.posx = posx;
             this.posy = posy;
@@ -54,6 +65,10 @@ namespace Tutorials
             this.roty = roty;
             this.rotz = rotz;
             this.rotw = rotw;
+
+            this.scalex = scalex;
+            this.scaley = scaley;
+            this.scalez = scalez;
         }
 
         /// <summary>
@@ -70,6 +85,14 @@ namespace Tutorials
         public Quaternion GetRotation()
         {
             return new Quaternion(rotx, roty, rotz, rotw);
+        }
+
+        /// <summary>
+        /// Gets the scale as a Vector3 object
+        /// </summary>
+        public Vector3 GetScale()
+        {
+            return new Vector3(scalex, scaley, scalez);
         }
 
         /// <summary>

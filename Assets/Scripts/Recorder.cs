@@ -619,6 +619,7 @@ namespace Tutorials
             {
                 obj.Value.transform.position = obj.Key.transform.position;
                 obj.Value.transform.rotation = obj.Key.transform.rotation;
+                obj.Value.transform.localScale = obj.Key.transform.localScale;
                 RecordingBuffer.SetObjectState(obj.Value.transform);
             }
         }

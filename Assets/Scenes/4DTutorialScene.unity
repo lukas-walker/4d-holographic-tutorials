@@ -834,8 +834,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 186973030}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &168399718
 MonoBehaviour:
@@ -850,9 +850,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxChunkSize: 65535
-  pointSize: 0.005
-  pointCloudElem: {fileID: 0}
-  pointCloudMaterial: {fileID: 0}
+  pointSize: 0.001
+  pointCloudElem: {fileID: 7258565985952825044, guid: 0e103885be9aa884ebc9d16411d8b804,
+    type: 3}
+  pointCloudMaterial: {fileID: 2100000, guid: 410bd770d3b6d8943be1474daa7e822c, type: 2}
 --- !u!1 &180299604
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +960,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 537149780}
+  - {fileID: 891080481}
+  - {fileID: 3905784940121933185}
+  - {fileID: 168399717}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5117,8 +5121,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 186973030}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &891080482
 MonoBehaviour:
@@ -13045,8 +13049,8 @@ Transform:
   m_Children:
   - {fileID: 4474003572216973430}
   - {fileID: 3905784941867408915}
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_Father: {fileID: 186973030}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3905784940121933198
 GameObject:

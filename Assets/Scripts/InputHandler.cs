@@ -89,7 +89,10 @@ namespace Tutorials
 
             sceneNumberLabel.text += FileHandler.AnimationListInstance.Count.ToString();
             sceneNumberLabel.text = "Step " + sceneNumberLabel.text;
-            boundingBox.SetActive(false);
+            if (boundingBox != null)
+            {
+                boundingBox.SetActive(false);
+            }
         }
 
         /// <summary>

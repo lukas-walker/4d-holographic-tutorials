@@ -33,6 +33,7 @@ namespace Tutorials.ResearchMode
         [SerializeField] bool enablePointCloud = true;
 
         RemoteConnection _remoteConnection;
+        private long _pingCtr = 0;
 
         public GameObject pointCloudRendererGo;
         public Color pointColor = Color.white;
@@ -60,12 +61,6 @@ namespace Tutorials.ResearchMode
             {
                 pointCloudRenderer = pointCloudRendererGo.GetComponent<PointCloudRenderer>();
                 pointCloudRendererGo.SetActive(_renderPointCloud);
-                
-                PointCloudDataChanged += (sender, args) =>
-                {
-                    PoitCloudDataEventArgs a = (PoitCloudDataEventArgs)args;
-                    pointCloudRenderer.Render(a.Data, a.Color);
-                };
             }
 
             _remoteConnection = GetComponent<RemoteConnection>();
@@ -115,7 +110,7 @@ namespace Tutorials.ResearchMode
         private void UpdatePointCloud()
         {
  #if ENABLE_WINMD_SUPPORT
-            if (enablePointCloud && _renderPointCloud && pointCloudRendererGo != null)
+            if (enablePointCloud && _renderPointCloud)
             {
                 if ((depthSensorMode == DepthSensorMode.LongThrow && !researchMode.LongThrowPointCloudUpdated()) ||
                     (depthSensorMode == DepthSensorMode.ShortThrow && !researchMode.PointCloudUpdated()))
@@ -147,8 +142,7 @@ namespace Tutorials.ResearchMode
             }
 #endif
         }
-
-        private long _pingCtr = 0;
+        
         private void SendPing()
         {
 #if ENABLE_WINMD_SUPPORT
@@ -159,25 +153,9 @@ namespace Tutorials.ResearchMode
 #endif
         }
         
-        // Event is thrown on new point data
-        public event EventHandler PointCloudDataChanged;
-        
-        public class PoitCloudDataEventArgs: EventArgs
-        {
-            public Vector3[] Data { get; set; }
-            public Color Color { get; set; }
-            public DepthSensorMode Mode { get; set; }
-        }
-        
         protected void OnNewPointCloudData(Vector3[] data)
         {
-            var args = new PoitCloudDataEventArgs()
-            {
-                Data = data,
-                Color = pointColor,
-                Mode = depthSensorMode
-            };
-            PointCloudDataChanged?.Invoke(this, args);
+            pointCloudRenderer.Render(data, pointColor);
         }
         
         public void TogglePointCloudRendering() {

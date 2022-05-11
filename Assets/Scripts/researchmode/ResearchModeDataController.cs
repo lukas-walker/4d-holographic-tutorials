@@ -36,6 +36,7 @@ namespace Tutorials.ResearchMode
         public GameObject pointCloudRendererGo;
         public Color pointColor = Color.white;
         private PointCloudRenderer pointCloudRenderer;
+        bool _renderPointCloud = true;
         
 
 #if ENABLE_WINMD_SUPPORT
@@ -178,13 +179,10 @@ namespace Tutorials.ResearchMode
             PointCloudDataChanged?.Invoke(this, args);
         }
         
-        //#region Button Event Functions
-        
-        bool renderPointCloud = true;
-        public void TogglePointCloudEvent()
+        public void TogglePointCloudRendering()
         {
-            renderPointCloud = !renderPointCloud;
-            if (renderPointCloud)
+            _renderPointCloud = !_renderPointCloud;
+            if (_renderPointCloud)
             {
                 pointCloudRendererGo.SetActive(true);
             }
@@ -193,6 +191,5 @@ namespace Tutorials.ResearchMode
                 pointCloudRendererGo.SetActive(false);
             }
         }
-        // #endregion
     }
 }

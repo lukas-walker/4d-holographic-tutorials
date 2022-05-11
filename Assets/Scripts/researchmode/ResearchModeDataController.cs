@@ -180,9 +180,7 @@ namespace Tutorials.ResearchMode
             PointCloudDataChanged?.Invoke(this, args);
         }
         
-        public void TogglePointCloudRendering()
-        {
-            pointColor = Color.red;
+        public void TogglePointCloudRendering() {
             _renderPointCloud = !_renderPointCloud;
             pointCloudRendererGo.SetActive(_renderPointCloud);
         }

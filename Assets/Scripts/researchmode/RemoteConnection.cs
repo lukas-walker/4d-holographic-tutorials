@@ -79,7 +79,7 @@ namespace Tutorials.ResearchMode
            #endif
         }
 
-        public void sendPing()
+        public async void sendPing()
         {
             #if ENABLE_WINMD_SUPPORT
             if (!lastMessageSent) return;

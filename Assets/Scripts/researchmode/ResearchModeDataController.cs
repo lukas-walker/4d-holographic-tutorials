@@ -10,6 +10,7 @@ using Tutorials.ResearchMode;
 using HL2UnityPlugin;
 #endif
 
+// #define ENABLE_WINMD_SUPPORT
 
 namespace Tutorials.ResearchMode
 {
@@ -36,7 +37,7 @@ namespace Tutorials.ResearchMode
         public GameObject pointCloudRendererGo;
         public Color pointColor = Color.white;
         private PointCloudRenderer pointCloudRenderer;
-        bool _renderPointCloud = true;
+        bool _renderPointCloud = false;
         
 
 #if ENABLE_WINMD_SUPPORT
@@ -58,6 +59,8 @@ namespace Tutorials.ResearchMode
             if (pointCloudRendererGo != null)
             {
                 pointCloudRenderer = pointCloudRendererGo.GetComponent<PointCloudRenderer>();
+                pointCloudRendererGo.SetActive(_renderPointCloud);
+                
                 PointCloudDataChanged += (sender, args) =>
                 {
                     PoitCloudDataEventArgs a = (PoitCloudDataEventArgs)args;
@@ -112,7 +115,7 @@ namespace Tutorials.ResearchMode
         private void UpdatePointCloud()
         {
  #if ENABLE_WINMD_SUPPORT
-            if (enablePointCloud && renderPointCloud && pointCloudRendererGo != null)
+            if (enablePointCloud && _renderPointCloud && pointCloudRendererGo != null)
             {
                 if ((depthSensorMode == DepthSensorMode.LongThrow && !researchMode.LongThrowPointCloudUpdated()) ||
                     (depthSensorMode == DepthSensorMode.ShortThrow && !researchMode.PointCloudUpdated()))
@@ -145,15 +148,13 @@ namespace Tutorials.ResearchMode
 #endif
         }
 
+        private long _pingCtr = 0;
         private void SendPing()
         {
 #if ENABLE_WINMD_SUPPORT
-            if ((pingCtr++) % 1000 == 0)
+            if ((_pingCtr++) % 1000 == 0 && _remoteConnection != null)
             {
-                if (_remoteConnection != null)
-                {
-                    _remoteConnection.sendPing();
-                }
+                _remoteConnection.sendPing();
             }
 #endif
         }
@@ -181,15 +182,9 @@ namespace Tutorials.ResearchMode
         
         public void TogglePointCloudRendering()
         {
+            pointColor = Color.red;
             _renderPointCloud = !_renderPointCloud;
-            if (_renderPointCloud)
-            {
-                pointCloudRendererGo.SetActive(true);
-            }
-            else
-            {
-                pointCloudRendererGo.SetActive(false);
-            }
+            pointCloudRendererGo.SetActive(_renderPointCloud);
         }
     }
 }

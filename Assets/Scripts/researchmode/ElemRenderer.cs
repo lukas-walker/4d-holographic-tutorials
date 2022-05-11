@@ -4,24 +4,14 @@ using System.Linq;
 
 namespace Tutorials.ResearchMode
 {
+    /// <summary>
+    /// Copies vector3d to unity mesh
+    /// Inspired by: https://github.com/petergu684/HoloLens2-ResearchMode-Unity
+    /// </summary>
     public class ElemRenderer : MonoBehaviour
     {
         Mesh mesh;
-
-        private void Awake()
-        {
-        }
-
-        // Use this for initialization
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
+        
         public void UpdateMesh(Vector3[] arrVertices, int nPointsToRender, int nPointsRendered, Color pointColor)
         {
             int nPoints;
@@ -38,7 +28,6 @@ namespace Tutorials.ResearchMode
 
             for (int i = 0; i < nPoints; i++)
             {
-                //points[i] = arrVertices[nPointsRendered + i];
                 indices[i] = i;
                 colors[i] = pointColor;
             }

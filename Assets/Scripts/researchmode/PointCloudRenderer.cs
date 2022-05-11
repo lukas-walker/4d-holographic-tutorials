@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Tutorials.ResearchMode
 {
+    /// <summary>
+    /// Keeps state of rendered objects
+    /// Inspired by: https://github.com/petergu684/HoloLens2-ResearchMode-Unity 
+    /// </summary>
     public class PointCloudRenderer : MonoBehaviour
     {
         public int maxChunkSize = 65535;

@@ -483,7 +483,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 186973030}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &168399718
 MonoBehaviour:
@@ -530,9 +530,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 537149780}
+  - {fileID: 1861450455}
   - {fileID: 3905784940121933185}
   - {fileID: 168399717}
-  - {fileID: 1861450455}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1618,7 +1618,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 30
+  field of view: 17.7
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -5471,8 +5471,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1861450455}
-  - component: {fileID: 1861450458}
-  - component: {fileID: 1861450457}
   - component: {fileID: 1861450456}
   m_Layer: 0
   m_Name: ResearchModeController
@@ -5493,7 +5491,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 186973030}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1861450456
 MonoBehaviour:
@@ -5511,33 +5509,6 @@ MonoBehaviour:
   enablePointCloud: 1
   pointCloudRendererGo: {fileID: 168399716}
   pointColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &1861450457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861450454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9763cb8140e0a884fb3bad4b28bbbb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1861450458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861450454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f286e4149844c1185cd154076b65ccd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hostIPAddress: 198.254.113.129
-  port: 9090
-  ConnectionStatusLED: {fileID: 0}
 --- !u!1 &1871896689
 GameObject:
   m_ObjectHideFlags: 0
@@ -7328,7 +7299,7 @@ Transform:
   - {fileID: 4474003572216973430}
   - {fileID: 3905784941867408915}
   m_Father: {fileID: 186973030}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3905784940121933198
 GameObject:
@@ -7665,7 +7636,7 @@ AudioSource:
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
-  BypassListenerEffects: 0
+  BypassListenerEffects: 1
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
@@ -8801,15 +8772,15 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: TogglePointCloudEvent
-        m_Mode: 1
+      - m_Target: {fileID: 11500000, guid: 4399f1285f434ed993da0d87f2d412ca, type: 3}
+        m_MethodName: set_name
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: TogglePointCloudEvent
           m_BoolArgument: 0
         m_CallState: 2
   Events:

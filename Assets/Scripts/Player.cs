@@ -171,7 +171,6 @@ namespace Tutorials
         {
             foreach (var comp in obj.GetComponents<Component>())
             {
-                Debug.Log($"Component: {comp.GetType().Name}");
                 if (!essentialComponents.Contains(comp.GetType().Name))
                 {
                     Destroy(comp);

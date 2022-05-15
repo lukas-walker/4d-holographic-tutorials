@@ -1,0 +1,1 @@
+C:\Users\Nicolas\programs\4d-holographic-tutorials\Build2019\4DHolographicTutorials\4DHolographicTutorials.vcxproj;arm64

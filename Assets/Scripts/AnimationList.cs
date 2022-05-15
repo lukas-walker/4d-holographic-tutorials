@@ -88,6 +88,26 @@ namespace Tutorials
             set => currentNode = value;
         }
 
+
+        public int Count
+        {
+            get { return animations.Count; }
+        }
+
+        public int GetCurrentAnimationIndex()
+        {
+            int i = 0;
+            for (LinkedListNode<AnimationWrapper> node = animations.First; node != null; node = node.Next)
+            {
+                if (node == currentNode)
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
+
         /// <summary>
         /// Access method for the animation entity that is currently active and open in the editor
         /// </summary>
@@ -151,6 +171,7 @@ namespace Tutorials
                 }
 
                 animationWrapper.Name = blobFileName;
+                animationWrapper.Description = "Unnamed";
                 animationWrapper.position_x = animationSpecificPointOfReference.localPosition.x;
                 animationWrapper.position_y = animationSpecificPointOfReference.localPosition.y;
                 animationWrapper.position_z = animationSpecificPointOfReference.localPosition.z;
@@ -193,6 +214,8 @@ namespace Tutorials
                 }
 
                 CurrentNode.Value.Name = blobFileName;
+                CurrentNode.Value.Description = inputAnimation.description;
+                Debug.Log("Overwriting with " + inputAnimation.description);
                 CurrentNode.Value.position_x = animationSpecificPointOfReference.localPosition.x;
                 CurrentNode.Value.position_y = animationSpecificPointOfReference.localPosition.y;
                 CurrentNode.Value.position_z = animationSpecificPointOfReference.localPosition.z;

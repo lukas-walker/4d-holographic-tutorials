@@ -209,6 +209,31 @@ namespace Tutorials
         }
 
         /// <summary>
+        /// Adds a user visible description to the animation
+        /// </summary>
+        public void NameCurrentAnimation(string description)
+        {
+            if (!IsRecording)
+            {
+                string currentAnimationFileName = FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().Name;
+                InputAnimation animation = FileHandler.LoadAnimationFromLocalBlobFile(currentAnimationFileName);
+                Debug.Log(animation);
+                animation.description = description;
+
+                try
+                {
+                    FileHandler.AnimationListInstance.OverwriteAnimationData(animation, animationSpecificPointOfReference);
+                    DiscardRecordedInput();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e.Message);
+                }
+            }
+           
+        }
+
+        /// <summary>
         /// Initializes the dictionary that contains all transforms in the given handmodels and matches the transforms with the corresponding TrackedHandJoint
         /// </summary>
         /// <param name="handLeft">The left hand.</param>

@@ -45,6 +45,11 @@ namespace Tutorials
         private float duration = 0.0f;
 
         /// <summary>
+        /// Name of the animation visible to the user
+        /// </summary>
+        public string description = "Unnamed scene";
+
+        /// <summary>
         /// Maximum duration of all animations curves.
         /// </summary>
         public float Duration
@@ -58,6 +63,19 @@ namespace Tutorials
                 return duration;
             }
         }
+
+        /// <summary>
+        /// Name of the animation visible to the user
+        /// </summary>
+        /*public string Description { get
+            {
+                return description;
+            }
+            protected internal set
+            {
+                this.description = value;
+            }
+        }*/
 
         /// <summary>
         /// Class that contains all animation curves for one joint / object (position and rotation)

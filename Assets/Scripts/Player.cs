@@ -360,6 +360,15 @@ namespace Tutorials
             } 
         }
 
+        /// <summary>
+        /// Returns the state of the player
+        /// </summary>
+        /// <returns>bool</returns>
+        public bool IsPlaying()
+        {
+            return isPlaying;
+        }
+
 
         /// <summary>
         /// updates the joint positions and rotations in the rigged hand visualizer

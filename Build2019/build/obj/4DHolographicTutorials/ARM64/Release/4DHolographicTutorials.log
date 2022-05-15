@@ -1,7 +1,0 @@
-﻿  App.cpp
-  UnityGenerated.cpp
-C:\Users\Nicolas\programs\4d-holographic-tutorials\Build2019\4DHolographicTutorials\App.cpp(26,1): warning C4973: 'Windows::UI::ViewManagement::IApplicationView2::SuppressSystemOverlays::set': marked as deprecated
-C:\Users\Nicolas\programs\4d-holographic-tutorials\Build2019\4DHolographicTutorials\App.cpp(26,1): message : Message: 'Use the TryEnterFullScreen method and IsFullScreenMode property instead of SuppressSystemOverlays. For more info, see MSDN.'
-  Generating code
-  Finished generating code
-  4DHolographicTutorials.vcxproj -> C:\Users\Nicolas\programs\4d-holographic-tutorials\Build2019\build\bin\ARM64\Release\4DHolographicTutorials.exe

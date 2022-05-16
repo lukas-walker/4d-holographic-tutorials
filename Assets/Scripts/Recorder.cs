@@ -25,6 +25,8 @@ namespace Tutorials
         private GameObject handRightPrefab;
         private GameObject recordingHandRight;
 
+        [SerializeField]
+        private GameObject objects;
         private Dictionary<GameObject, GameObject> objectList;
 
         [SerializeField]
@@ -93,9 +95,8 @@ namespace Tutorials
         private void SetActiveObjectList()
         {
             objectList = new Dictionary<GameObject, GameObject>();
-            GameObject objectCollection = GameObject.Find("Objects");
-            if (objectCollection == null) return;
-            foreach(Transform child in objectCollection.transform)
+            if (objects == null) return;
+            foreach(Transform child in objects.transform)
             {
                 // Only consider active objects to be recorded.
                 if (child.gameObject.activeSelf)
@@ -217,7 +218,6 @@ namespace Tutorials
             {
                 string currentAnimationFileName = FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().Name;
                 InputAnimation animation = FileHandler.LoadAnimationFromLocalBlobFile(currentAnimationFileName);
-                Debug.Log(animation);
                 animation.description = description;
 
                 try

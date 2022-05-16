@@ -15,9 +15,11 @@ namespace Microsoft.MixedReality.Toolkit.UI
         [SerializeField]
         private Interactable handMeshButton = null;
         [SerializeField]
-        private Interactable handJointsButton = null;
+        private Interactable pointCloudButton = null;
         [SerializeField]
         private Interactable objectManagerPanelButton = null;
+        [SerializeField]
+        private Interactable recordingManagerPanelButton = null;
 
         private void Start()
         {
@@ -27,8 +29,9 @@ namespace Microsoft.MixedReality.Toolkit.UI
                 handProfile = CoreServices.InputSystem.InputSystemProfile.HandTrackingProfile;
             }
             handMeshButton.IsToggled = handProfile != null && handProfile.EnableHandMeshVisualization;
-            handJointsButton.IsToggled = handProfile != null && handProfile.EnableHandJointVisualization;
+            pointCloudButton.IsToggled = false;
             objectManagerPanelButton.IsToggled = false;
+            recordingManagerPanelButton.IsToggled = false;
         }
     }
 }

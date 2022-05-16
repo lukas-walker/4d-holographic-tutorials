@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Handles all functionality provided by the object manager panel
+/// Handles functionalities provided by a scene manager panel
 /// </summary>
-public class ObjectManagerPanel : MonoBehaviour
+public class SceneManagerPanel : MonoBehaviour
 {
     public GameObject panel;
     private void Start()
@@ -12,9 +12,9 @@ public class ObjectManagerPanel : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggles the object manager panel to spawn new objects
+    /// Toggles a manager panel to control specific aspects of the scene
     /// </summary>
-    public void ToggleObjectManager()
+    public void ToggleSceneManager()
     {
         panel.SetActive(!panel.activeSelf);
     }

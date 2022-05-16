@@ -125,10 +125,12 @@ namespace Tutorials
 
             riggedHandVisualizerRight = riggedHandRight.GetComponent<RiggedHandVisualizer>();
 
-            // if the current animation in the editor changes, the new animation will be loaded and played back in the playback service.
-            FileHandler.AnimationListInstance.CurrentAnimationChanged.AddListener(PlayCurrent);
+            // Commented as I think recordings should only be played when issued by the user through the playback button.
 
-            PlayCurrent();
+            // if the current animation in the editor changes, the new animation will be loaded and played back in the playback service.
+            //FileHandler.AnimationListInstance.CurrentAnimationChanged.AddListener(PlayCurrent);
+
+            //PlayCurrent();
         }
 
         /// <summary>

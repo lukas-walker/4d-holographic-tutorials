@@ -61,18 +61,6 @@ namespace Tutorials
         }
 
         /// <summary>
-        /// Creates a new animation wrapper that will be opened in the Editor. 
-        /// The animation specific point of reference will be reset to the global origin that is either at the MixedReality
-        /// space's origin or the origin that has been set through QR Code calibration. 
-        /// </summary>
-        public void CreateNewAnimationWrapper()
-        {
-            animationSpecificPointOfReference.localPosition = Vector3.zero;
-            animationSpecificPointOfReference.localRotation = Quaternion.identity;
-            FileHandler.AnimationListInstance.CreateNewAnimationEntity(null, animationSpecificPointOfReference);
-        }
-
-        /// <summary>
         /// Record UI button pressed; take correct action to start/stop
         /// </summary>
         public void RecordButtonAction()
@@ -101,6 +89,13 @@ namespace Tutorials
 
             recorder.StartRecording();
             
+        }
+        /// <summary>
+        /// Creates a new animation appended to the animation list
+        /// </summary>
+        public void CreateNewAnimationWrapper()
+        {
+            recorder.CreateNewAnimationWrapper();
         }
 
         /// <summary>

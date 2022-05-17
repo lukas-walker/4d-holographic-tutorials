@@ -126,6 +126,18 @@ namespace Tutorials
             InitializeDictionary(recordingHandLeft.transform, recordingHandRight.transform);
         }
 
+        /// <summary>
+        /// Creates a new animation wrapper that will be opened in the Editor. 
+        /// The animation specific point of reference will be reset to the global origin that is either at the MixedReality
+        /// space's origin or the origin that has been set through QR Code calibration. 
+        /// </summary>
+        public AnimationWrapper CreateNewAnimationWrapper()
+        {
+            animationSpecificPointOfReference.localPosition = Vector3.zero;
+            animationSpecificPointOfReference.localRotation = Quaternion.identity;
+            return FileHandler.AnimationListInstance.CreateNewAnimationEntity(null, animationSpecificPointOfReference);
+        }
+
 
         /// <summary>
         /// Start Input Recording.
@@ -216,13 +228,17 @@ namespace Tutorials
         {
             if (!IsRecording)
             {
-                string currentAnimationFileName = FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().Name;
-                InputAnimation animation = FileHandler.LoadAnimationFromLocalBlobFile(currentAnimationFileName);
-                animation.description = description;
+                AnimationWrapper animationWrapper = FileHandler.AnimationListInstance.GetCurrentAnimationWrapper();
+                if (animationWrapper == null)
+                {
+                    animationWrapper = CreateNewAnimationWrapper();
+                }
 
+                animationWrapper.Description = description;
+                
                 try
                 {
-                    FileHandler.AnimationListInstance.OverwriteAnimationData(animation, animationSpecificPointOfReference);
+                    FileHandler.AnimationListInstance.OverwriteAnimationData(animationWrapper.Animation, animationSpecificPointOfReference);
                     DiscardRecordedInput();
                 }
                 catch (Exception e)

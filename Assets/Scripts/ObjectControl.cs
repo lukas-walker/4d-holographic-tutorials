@@ -19,10 +19,10 @@ public class ObjectControl : MonoBehaviour
     /// </summary>
     public void SetManagerRelativePosition()
     {
-        GameObject panel = GameObject.Find("SceneManagerPanel");
+        GameObject panel = GameObject.Find("ObjectManagerPanel");
         if (panel == null) return;
 
-        objectModel.transform.SetPositionAndRotation(panel.transform.position + new Vector3(.0f, .075f, .05f), objectModel.transform.rotation);
+        objectModel.transform.SetPositionAndRotation(panel.transform.position + new Vector3(.0f, .075f, .0f), panel.transform.rotation * objectModel.transform.rotation);
     }
 
     /// <summary>

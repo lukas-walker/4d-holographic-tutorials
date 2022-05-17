@@ -12,7 +12,7 @@ namespace Tutorials
         [SerializeField]
         private Recorder recorder;
         [SerializeField]
-        public TextMeshProUGUI stepNameInput;
+        public TMP_InputField stepNameInputField;
 
         // Start is called before the first frame update
         void Start()
@@ -33,23 +33,17 @@ namespace Tutorials
         {
             if (sceneNameEditor.activeSelf)
             {
-                stepNameInput.text = stepNameInput.text.Trim();
-                if (1 < stepNameInput.text.Length)
+                stepNameInputField.text = stepNameInputField.text.Trim();
+                if (stepNameInputField.text != string.Empty)
                 {
-                    Debug.Log($"Scene Name updated with {stepNameInput.text} and length {stepNameInput.text.Length}");
                     // Save the name to the animation file instance
-                    recorder.NameCurrentAnimation(stepNameInput.text);
+                    recorder.NameCurrentAnimation(stepNameInputField.text);
+                    stepNameInputField.text = "";
                 }
-                else
-                {
-                    Debug.Log("Scene Name not updated");
-                }
-                Debug.Log("Deactivate scene name editing");
                 sceneNameEditor.SetActive(false);
             }
             else
             {
-                Debug.Log("Activate scene name editing");
                 sceneNameEditor.SetActive(true);
             }
         }

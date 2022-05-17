@@ -214,7 +214,6 @@ namespace Tutorials
                 }
 
                 CurrentNode.Value.Name = blobFileName;
-                CurrentNode.Value.Description = inputAnimation.description;
                 CurrentNode.Value.position_x = animationSpecificPointOfReference.localPosition.x;
                 CurrentNode.Value.position_y = animationSpecificPointOfReference.localPosition.y;
                 CurrentNode.Value.position_z = animationSpecificPointOfReference.localPosition.z;

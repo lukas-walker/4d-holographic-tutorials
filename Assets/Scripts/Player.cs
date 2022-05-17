@@ -76,6 +76,12 @@ namespace Tutorials
         /// </summary>
         private RiggedHandVisualizer riggedHandVisualizerRight;
 
+        [SerializeField]
+        private GameObject objects;
+        /// <summary>
+        /// Keeps track of objects by name
+        /// </summary>
+        private Dictionary<string, GameObject> objectDict;
         /// <summary>
         /// Is set at the start of each animation to the objects to be animated
         /// </summary>
@@ -131,6 +137,13 @@ namespace Tutorials
             //FileHandler.AnimationListInstance.CurrentAnimationChanged.AddListener(PlayCurrent);
 
             //PlayCurrent();
+
+            // Initialize own object dictionary
+            objectDict = new Dictionary<string, GameObject>();
+            foreach (Transform obj in objects.transform)
+            {
+                objectDict[obj.name] = obj.gameObject;
+            }
         }
 
         /// <summary>
@@ -195,9 +208,8 @@ namespace Tutorials
 
             foreach(var entry in animation.objectCurves)
             {
-                string originalName = entry.Key.Substring(0, entry.Key.LastIndexOf("(Clone)"));
-                GameObject obj = GameObject.Find(originalName);
-                if (obj == null)
+                string originalName = entry.Key.Substring(0, entry.Key.LastIndexOf("(Clone)")).Trim();
+                if (!objectDict.TryGetValue(originalName, out GameObject obj))
                 {
                     Debug.Log($"GameObject with name {originalName} could not be found.");
                     continue;

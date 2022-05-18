@@ -23,12 +23,12 @@ Material:
     - _Blur_: 0.307
     - _Displacement_: 0
     - _Enable_: 1
-    - _Exponent_: 2.16
+    - _Exponent_: 1.3
     - _Fade_In_End_: 0
     - _Fade_In_Start_: 0
-    - _Intensity_: 0.81
+    - _Intensity_: 1.3
     - _Radius_: 0.09
-    - _Soften_: 0.312
+    - _Soften_: 0.35
     m_Colors:
     - _Center_: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Color_: {r: 1, g: 1, b: 1, a: 1}
+    - _Color_: {r: 0.41451588, g: 0.5379166, b: 0.764151, a: 1}

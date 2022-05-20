@@ -4217,6 +4217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectModel: {fileID: 231696099}
+  objectManagerPanel: {fileID: 460243752}
 --- !u!114 &231696102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4311,7 +4312,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 0}
+  constraintsManager: {fileID: 231696105}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
@@ -4416,7 +4417,7 @@ GameObject:
   - component: {fileID: 233068273}
   - component: {fileID: 233068272}
   m_Layer: 0
-  m_Name: ToggleClosedLaptopObject
+  m_Name: SpawnClosedLaptopObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4601,7 +4602,7 @@ MonoBehaviour:
   states: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
   InputActionId: 0
   isGlobal: 0
-  Dimensions: 2
+  Dimensions: 1
   dimensionIndex: 0
   startDimensionIndex: 0
   CanSelect: 1
@@ -4612,20 +4613,17 @@ MonoBehaviour:
   - Target: {fileID: 642056582}
     Themes:
     - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
-    - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
   - Target: {fileID: 687616315}
     Themes:
-    - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
     - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
   - Target: {fileID: 1950550289}
     Themes:
     - {fileID: 11400000, guid: 452ab0b768e73aa45a65adeb08147cec, type: 2}
-    - {fileID: 11400000, guid: c020ebf06513a084caa57aa68a245a6b, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 967600771}
-        m_MethodName: ToggleObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7958,6 +7956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectModel: {fileID: 400394749}
+  objectManagerPanel: {fileID: 460243752}
 --- !u!114 &400394752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8460,7 +8459,7 @@ GameObject:
   - component: {fileID: 456667316}
   - component: {fileID: 456667315}
   m_Layer: 0
-  m_Name: ToggleCubeObject
+  m_Name: SpawnBoundingBoxObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8645,7 +8644,7 @@ MonoBehaviour:
   states: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
   InputActionId: 0
   isGlobal: 0
-  Dimensions: 2
+  Dimensions: 1
   dimensionIndex: 0
   startDimensionIndex: 0
   CanSelect: 1
@@ -8656,20 +8655,17 @@ MonoBehaviour:
   - Target: {fileID: 700303593}
     Themes:
     - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
-    - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
   - Target: {fileID: 560741616}
     Themes:
-    - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
     - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
   - Target: {fileID: 1629541779}
     Themes:
     - {fileID: 11400000, guid: 452ab0b768e73aa45a65adeb08147cec, type: 2}
-    - {fileID: 11400000, guid: c020ebf06513a084caa57aa68a245a6b, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1857956472}
-        m_MethodName: ToggleObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11791,6 +11787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectModel: {fileID: 557165016}
+  objectManagerPanel: {fileID: 460243752}
 --- !u!114 &557165019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17700,6 +17697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectModel: {fileID: 959847528}
+  objectManagerPanel: {fileID: 460243752}
 --- !u!114 &959847531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17964,6 +17962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectModel: {fileID: 967600769}
+  objectManagerPanel: {fileID: 460243752}
 --- !u!114 &967600772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18706,6 +18705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectModel: {fileID: 993189926}
+  objectManagerPanel: {fileID: 460243752}
 --- !u!114 &993189929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21687,6 +21687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectModel: {fileID: 1129694379}
+  objectManagerPanel: {fileID: 460243752}
 --- !u!114 &1129694382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22445,7 +22446,7 @@ GameObject:
   - component: {fileID: 1172220664}
   - component: {fileID: 1172220663}
   m_Layer: 0
-  m_Name: ToggleKeyboardObject
+  m_Name: SpawnKeyboardObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22630,7 +22631,7 @@ MonoBehaviour:
   states: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
   InputActionId: 0
   isGlobal: 0
-  Dimensions: 2
+  Dimensions: 1
   dimensionIndex: 0
   startDimensionIndex: 0
   CanSelect: 1
@@ -22641,20 +22642,17 @@ MonoBehaviour:
   - Target: {fileID: 2018316959}
     Themes:
     - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
-    - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
   - Target: {fileID: 187442996}
     Themes:
-    - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
     - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
   - Target: {fileID: 1109450882}
     Themes:
     - {fileID: 11400000, guid: 452ab0b768e73aa45a65adeb08147cec, type: 2}
-    - {fileID: 11400000, guid: c020ebf06513a084caa57aa68a245a6b, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 557165018}
-        m_MethodName: ToggleObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27600,7 +27598,7 @@ GameObject:
   - component: {fileID: 1399928958}
   - component: {fileID: 1399928957}
   m_Layer: 0
-  m_Name: ToggleMouseObject
+  m_Name: SpawnMouseObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27785,7 +27783,7 @@ MonoBehaviour:
   states: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
   InputActionId: 0
   isGlobal: 0
-  Dimensions: 2
+  Dimensions: 1
   dimensionIndex: 0
   startDimensionIndex: 0
   CanSelect: 1
@@ -27796,20 +27794,17 @@ MonoBehaviour:
   - Target: {fileID: 580140868}
     Themes:
     - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
-    - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
   - Target: {fileID: 1217926057}
     Themes:
-    - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
     - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
   - Target: {fileID: 452242560}
     Themes:
     - {fileID: 11400000, guid: 452ab0b768e73aa45a65adeb08147cec, type: 2}
-    - {fileID: 11400000, guid: c020ebf06513a084caa57aa68a245a6b, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 993189928}
-        m_MethodName: ToggleObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -32252,7 +32247,7 @@ GameObject:
   - component: {fileID: 1570344017}
   - component: {fileID: 1570344016}
   m_Layer: 0
-  m_Name: ToggleMonitorObject
+  m_Name: SpawnMonitorObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32437,7 +32432,7 @@ MonoBehaviour:
   states: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
   InputActionId: 0
   isGlobal: 0
-  Dimensions: 2
+  Dimensions: 1
   dimensionIndex: 0
   startDimensionIndex: 0
   CanSelect: 1
@@ -32448,20 +32443,17 @@ MonoBehaviour:
   - Target: {fileID: 615453292}
     Themes:
     - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
-    - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
   - Target: {fileID: 193940294}
     Themes:
-    - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
     - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
   - Target: {fileID: 1418670470}
     Themes:
     - {fileID: 11400000, guid: 452ab0b768e73aa45a65adeb08147cec, type: 2}
-    - {fileID: 11400000, guid: c020ebf06513a084caa57aa68a245a6b, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 400394751}
-        m_MethodName: ToggleObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39073,6 +39065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectModel: {fileID: 1857956463}
+  objectManagerPanel: {fileID: 460243752}
 --- !u!23 &1857956473
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39496,7 +39489,7 @@ GameObject:
   - component: {fileID: 1887913240}
   - component: {fileID: 1887913239}
   m_Layer: 0
-  m_Name: ToggleBasketObject
+  m_Name: SpawnBasketObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39681,7 +39674,7 @@ MonoBehaviour:
   states: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
   InputActionId: 0
   isGlobal: 0
-  Dimensions: 2
+  Dimensions: 1
   dimensionIndex: 0
   startDimensionIndex: 0
   CanSelect: 1
@@ -39692,20 +39685,17 @@ MonoBehaviour:
   - Target: {fileID: 1466235962}
     Themes:
     - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
-    - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
   - Target: {fileID: 2088641766}
     Themes:
-    - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
     - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
   - Target: {fileID: 1357316531}
     Themes:
     - {fileID: 11400000, guid: 452ab0b768e73aa45a65adeb08147cec, type: 2}
-    - {fileID: 11400000, guid: c020ebf06513a084caa57aa68a245a6b, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 959847530}
-        m_MethodName: ToggleObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40395,7 +40385,7 @@ GameObject:
   - component: {fileID: 1918920257}
   - component: {fileID: 1918920256}
   m_Layer: 0
-  m_Name: ToggleiPhoneObject
+  m_Name: SpawniPhoneObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40580,7 +40570,7 @@ MonoBehaviour:
   states: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
   InputActionId: 0
   isGlobal: 0
-  Dimensions: 2
+  Dimensions: 1
   dimensionIndex: 0
   startDimensionIndex: 0
   CanSelect: 1
@@ -40591,20 +40581,17 @@ MonoBehaviour:
   - Target: {fileID: 273351601}
     Themes:
     - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
-    - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
   - Target: {fileID: 1304850959}
     Themes:
-    - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
     - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
   - Target: {fileID: 2003506311}
     Themes:
     - {fileID: 11400000, guid: 452ab0b768e73aa45a65adeb08147cec, type: 2}
-    - {fileID: 11400000, guid: c020ebf06513a084caa57aa68a245a6b, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1129694381}
-        m_MethodName: ToggleObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41309,7 +41296,7 @@ GameObject:
   - component: {fileID: 1947747799}
   - component: {fileID: 1947747798}
   m_Layer: 0
-  m_Name: ToggleOpenLaptopObject
+  m_Name: SpawnOpenLaptopObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41494,7 +41481,7 @@ MonoBehaviour:
   states: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
   InputActionId: 0
   isGlobal: 0
-  Dimensions: 2
+  Dimensions: 1
   dimensionIndex: 0
   startDimensionIndex: 0
   CanSelect: 1
@@ -41505,20 +41492,17 @@ MonoBehaviour:
   - Target: {fileID: 1249410620}
     Themes:
     - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
-    - {fileID: 11400000, guid: 0c4c73f326f602744bdcfff481fd6f20, type: 2}
   - Target: {fileID: 396265383}
     Themes:
-    - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
     - {fileID: 11400000, guid: 8f8cfb3041153fa45bccb6d664a563ec, type: 2}
   - Target: {fileID: 634073978}
     Themes:
     - {fileID: 11400000, guid: 452ab0b768e73aa45a65adeb08147cec, type: 2}
-    - {fileID: 11400000, guid: c020ebf06513a084caa57aa68a245a6b, type: 2}
   OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 231696101}
-        m_MethodName: ToggleObject
+        m_MethodName: SpawnObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

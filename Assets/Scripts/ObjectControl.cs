@@ -7,16 +7,7 @@ using UnityEngine;
 /// </summary>
 public class ObjectControl : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject objectModel;
-    [SerializeField]
-    private GameObject objectManagerPanel;
-
-    /// <summary>
-    /// Gives each instance a new ID
-    /// </summary>
-    private int n_clones;
-    
+    public GameObject objectModel;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,18 +15,22 @@ public class ObjectControl : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawns an instance of the assigned object
+    /// Set the position of the spawned object relative to the object manager panel
     /// </summary>
-    public void SpawnObject()
+    public void SetManagerRelativePosition()
     {
-        GameObject clone = Instantiate(
-            objectModel,
-            objectManagerPanel.transform.position + new Vector3(.0f, .1f, .0f),
-            objectManagerPanel.transform.rotation * objectModel.transform.rotation,
-            objectModel.transform.parent);
-        Destroy(clone.GetComponent<ObjectControl>());
-        clone.name = $"{objectModel.name}-{n_clones++}";
-        clone.transform.localScale *= 3;
-        clone.SetActive(true);
+        GameObject panel = GameObject.Find("ObjectManagerPanel");
+        if (panel == null) return;
+
+        objectModel.transform.SetPositionAndRotation(panel.transform.position + new Vector3(.0f, .075f, .0f), panel.transform.rotation * objectModel.transform.rotation);
+    }
+
+    /// <summary>
+    /// Toggles the assigned object
+    /// </summary>
+    public void ToggleObject()
+    {
+        SetManagerRelativePosition();
+        objectModel.SetActive(!objectModel.activeSelf);
     }
 }

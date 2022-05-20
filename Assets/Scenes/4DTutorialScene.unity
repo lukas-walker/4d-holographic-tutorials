@@ -6209,6 +6209,7 @@ MonoBehaviour:
   recorder: {fileID: 297831696}
   player: {fileID: 1246967730}
   animationSpecificPointOfReference: {fileID: 0}
+  objects: {fileID: 0}
 --- !u!1 &300743222
 GameObject:
   m_ObjectHideFlags: 0
@@ -31026,7 +31027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500175877}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0.106066, z: 0.606066}
+  m_LocalPosition: {x: 0.1, y: 0.1, z: 0.606066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 993189927}
@@ -42815,6 +42816,7 @@ MonoBehaviour:
   recorder: {fileID: 297831696}
   player: {fileID: 1246967730}
   animationSpecificPointOfReference: {fileID: 2087736411}
+  objects: {fileID: 1500175877}
 --- !u!4 &2004096171
 Transform:
   m_ObjectHideFlags: 0

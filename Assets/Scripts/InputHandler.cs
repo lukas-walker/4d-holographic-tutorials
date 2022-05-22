@@ -193,8 +193,9 @@ namespace Tutorials
         /// Should be called when the user changes the position or rotation of the animation specific point of reference changed.
         /// </summary>
         /// <param name="animationSpecificPointOfReference">The animation specific point of reference.</param>
-        public void OnAnimationSpecificPointOfReferenceChanged()
+        public void OnAnimationSpecificPointOfReferenceChanged() 
         {
+            if (FileHandler.AnimationListInstance.GetCurrentAnimationWrapper() == null) return;
             FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().position_x = animationSpecificPointOfReference.transform.localPosition.x;
             FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().position_y = animationSpecificPointOfReference.transform.localPosition.y;
             FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().position_z = animationSpecificPointOfReference.transform.localPosition.z;

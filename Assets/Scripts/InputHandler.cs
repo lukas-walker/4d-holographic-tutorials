@@ -21,16 +21,16 @@ namespace Tutorials
         [SerializeField]
         private Transform animationSpecificPointOfReference;
 
-        // TODO: REMOVE
-        public TextMeshPro recordingCountdownText;
-
         void OnDestroy()
         {
             FileHandler.SaveAnimationList();
         }
 
+        public TextMeshPro recordingCountdownText;
+
         private string countdownText = "";
         private string shouldStartRecord = "no"; // Using strings because locks don't work on bools
+        private CancellationTokenSource cancelRecordingCountdownToken;
 
         public void Update()
         {
@@ -98,25 +98,45 @@ namespace Tutorials
             }
             else
             {
-                Thread t = new Thread(() => StartCountdownThenRecord());
-                t.Start();
+                if (countdownText != "")
+                {
+                    // Countdown is currently running and user wants to cancel
+                    cancelRecordingCountdownToken.Cancel();
+                    countdownText = "";
+                }
+                else
+                {
+                    // Countdown has not started so user is wanting to start recording
+                    cancelRecordingCountdownToken = new CancellationTokenSource();
+                    Thread t = new Thread(() => StartCountdownThenRecord(cancelRecordingCountdownToken));
+                    t.Start();
+                }
+                
             }
         }
 
-        public void StartCountdownThenRecord()
+        public void StartCountdownThenRecord(CancellationTokenSource ct)
         {
-            //CancellationToken token = (CancellationToken)obj;
-            //Thread.Sleep(1000);
-            //recordingCountdownText.text = "4";
-            for (int i = 5; i > 0; i--)
+            for (int i = 3; i > 0; i--)
             {
+                if (ct.IsCancellationRequested)
+                {
+                    // User has requested to not record
+                    return;
+                }
+
                 lock (countdownText)
                 {
                     countdownText = i.ToString();
                 }
-                Thread.Sleep(1000);
+                var canceled = ct.Token.WaitHandle.WaitOne(1000);
+                if (canceled)
+                {
+                    return;
+                }
             }
 
+            /*
             lock (countdownText)
             {
                 countdownText = "";
@@ -128,8 +148,8 @@ namespace Tutorials
                 shouldStartRecord = "yes";
             }
 
-            
-
+            cancelRecordingCountdownToken.Dispose();
+            */
         }
 
         /// <summary>

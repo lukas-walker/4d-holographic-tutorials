@@ -6646,7 +6646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0537, y: 0.0356}
+  m_AnchoredPosition: {x: 0.0512, y: 0.0356}
   m_SizeDelta: {x: 15, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &301035994
@@ -19641,7 +19641,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3033667219593020291, guid: 3d9a511bc135e704ba450a308819139c, type: 3}
+  - {fileID: -3033667219593020291, guid: 750d291ef85265d428f2670d64ff3486, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

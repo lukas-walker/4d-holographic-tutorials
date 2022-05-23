@@ -181,7 +181,6 @@ namespace Tutorials
             if (IsRecording)
             {
                 IsRecording = false;
-                //cts.Cancel(); // Cancel the start thread if it has been less than 5 seconds and it is active
                 OnRecordingStopped.Invoke();
             }
         }

@@ -369,7 +369,8 @@ namespace Tutorials
             foreach(var obj in objectList)
             {
                 TransformData data = animation.EvaluateObject(localTime, obj.name);
-                obj.transform.SetPositionAndRotation(data.GetPosition(), data.GetRotation());
+                obj.transform.localPosition =data.GetPosition();
+                obj.transform.localRotation = data.GetRotation();
                 obj.transform.localScale = data.GetScale();
             } 
         }

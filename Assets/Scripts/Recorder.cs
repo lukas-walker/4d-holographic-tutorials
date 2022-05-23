@@ -658,8 +658,8 @@ namespace Tutorials
         {
             foreach(var obj in objectList)
             {
-                obj.Value.transform.position = obj.Key.transform.position;
-                obj.Value.transform.rotation = obj.Key.transform.rotation;
+                obj.Value.transform.position = obj.Key.transform.localPosition;
+                obj.Value.transform.rotation = obj.Key.transform.localRotation;
                 obj.Value.transform.localScale = obj.Key.transform.localScale;
                 RecordingBuffer.SetObjectState(obj.Value.transform);
             }

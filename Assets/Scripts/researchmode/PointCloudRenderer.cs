@@ -14,7 +14,7 @@ namespace Tutorials.ResearchMode
         public GameObject pointCloudElem;
         public Material pointCloudMaterial;
 
-        List<GameObject> elems;
+        public List<GameObject> elems;
 
         void Start()
         {

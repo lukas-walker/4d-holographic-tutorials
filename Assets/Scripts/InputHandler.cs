@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Input;
 using TMPro;
@@ -25,6 +28,13 @@ namespace Tutorials
         {
             FileHandler.SaveAnimationList();
         }
+
+        public TextMeshPro recordingCountdownText;
+
+        private string countdownText = "";
+        private string shouldStartRecord = "no"; // Using strings because locks don't work on bools
+        private CancellationTokenSource cancelRecordingCountdownToken;
+
         public void Update()
         {
 #if UNITY_EDITOR
@@ -54,6 +64,21 @@ namespace Tutorials
                 Next();
             }
 #endif
+
+            if (recordingCountdownText.text != countdownText)
+            {
+                // Checking value first because it might be more efficient than setting label text on every update
+                recordingCountdownText.text = countdownText;
+            }
+
+            if (shouldStartRecord == "yes")
+            {
+                // Start the recording from the main thread
+                shouldStartRecord = "no";
+                RecordAnimation();
+            }
+
+
         }
 
         private void Start()
@@ -69,14 +94,63 @@ namespace Tutorials
         public void RecordButtonAction()
         {
             // TODO: Grey-out/disable non-recording buttons while recording
+
             if (recorder.IsRecording)
             {
                 SaveAnimation();
             }
             else
             {
-                RecordAnimation();
+                if (countdownText != "")
+                {
+                    // Countdown is currently running and user wants to cancel
+                    cancelRecordingCountdownToken.Cancel();
+                    countdownText = "";
+                }
+                else
+                {
+                    // Countdown has not started so user is wanting to start recording
+                    cancelRecordingCountdownToken = new CancellationTokenSource();
+                    Thread t = new Thread(() => StartCountdownThenRecord(cancelRecordingCountdownToken));
+                    t.Start();
+                }
+                
             }
+        }
+
+        public void StartCountdownThenRecord(CancellationTokenSource ct)
+        {
+            for (int i = 3; i > 0; i--)
+            {
+                if (ct.IsCancellationRequested)
+                {
+                    // User has requested to not record
+                    return;
+                }
+
+                lock (countdownText)
+                {
+                    countdownText = i.ToString();
+                }
+                var canceled = ct.Token.WaitHandle.WaitOne(1000);
+                if (canceled)
+                {
+                    return;
+                }
+            }
+
+            lock (countdownText)
+            {
+                countdownText = "";
+            }
+
+            lock (shouldStartRecord)
+            {
+                // Tell the main thread to start recording
+                shouldStartRecord = "yes";
+            }
+
+            cancelRecordingCountdownToken.Dispose();
         }
 
         /// <summary>
@@ -210,5 +284,6 @@ namespace Tutorials
             FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().rotation_z = animationSpecificPointOfReference.transform.localRotation.z;
             FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().rotation_w = animationSpecificPointOfReference.transform.localRotation.w;
         }
+
     }
 }

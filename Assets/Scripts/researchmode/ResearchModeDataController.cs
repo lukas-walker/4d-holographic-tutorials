@@ -162,5 +162,28 @@ namespace Tutorials.ResearchMode
             _renderPointCloud = !_renderPointCloud;
             pointCloudRendererGo.SetActive(_renderPointCloud);
         }
+
+        /// <summary>
+        /// Record the point cloud for the current bounding box to be displayed later
+        /// </summary>
+        public void CaptureBoundingBoxPointCloud(GameObject boundingBox)
+        {
+            Collider boundingCollider = boundingBox.GetComponent<Collider>();
+
+            List<GameObject> containingElements = new List<GameObject>();
+
+            // Checking point by point might be bad....
+            Debug.Log(pointCloudRenderer.elems.Count);
+            foreach (GameObject elem in pointCloudRenderer.elems)
+            {
+                if (boundingCollider.bounds.Contains(elem.transform.localPosition))
+                {
+                    Debug.Log("Bounds intersecting");
+                    containingElements.Add(elem);
+                }
+            }
+            
+        }
+
     }
 }

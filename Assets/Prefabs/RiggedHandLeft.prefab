@@ -47,9 +47,12 @@ MonoBehaviour:
   Wrist: {fileID: 705926914946761199}
   Palm: {fileID: 705926914946761199}
   ThumbRoot: {fileID: 705926914946761191}
-  JointPrefab: {fileID: 1955475817299902, guid: 1c71f203a2bdacf4ba39c5da9bb92348, type: 3}
-  PalmJointPrefab: {fileID: 1955475817299902, guid: 1c71f203a2bdacf4ba39c5da9bb92348, type: 3}
-  FingerTipPrefab: {fileID: 7094064642998883381, guid: 63295bb251729d24b82727307db5f85e, type: 3}
+  JointPrefab: {fileID: 1955475817299902, guid: 1c71f203a2bdacf4ba39c5da9bb92348,
+    type: 3}
+  PalmJointPrefab: {fileID: 1955475817299902, guid: 1c71f203a2bdacf4ba39c5da9bb92348,
+    type: 3}
+  FingerTipPrefab: {fileID: 7094064642998883381, guid: 63295bb251729d24b82727307db5f85e,
+    type: 3}
   ThumbRootIsMetacarpal: 1
   IndexRoot: {fileID: 705926914946761175}
   IndexRootIsMetacarpal: 0
@@ -414,7 +417,6 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -26,7 +26,7 @@ namespace Tutorials
         private GameObject recordingHandRight;
 
         [SerializeField]
-        private GameObject objects;
+        private ObjectManager objectManager;
         private Dictionary<GameObject, GameObject> objectList;
 
         [SerializeField]
@@ -95,17 +95,13 @@ namespace Tutorials
         private void SetActiveObjectList()
         {
             objectList = new Dictionary<GameObject, GameObject>();
-            if (objects == null) return;
-            foreach(Transform child in objects.transform)
+            List<GameObject> spawnedObjects = objectManager.GetSpawnedObjects();
+            foreach (GameObject obj in spawnedObjects)
             {
-                // Only consider active objects to be recorded.
-                if (child.gameObject.activeSelf)
-                {
-                    GameObject clone = Instantiate(child.gameObject, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
-                    clone.SetActive(false);
-                    clone.transform.parent = animationSpecificPointOfReference.transform;
-                    objectList.Add(child.gameObject, clone);
-                }
+                GameObject clone = Instantiate(obj, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
+                clone.SetActive(false);
+                clone.transform.parent = animationSpecificPointOfReference.transform;
+                objectList.Add(obj, clone);
             }
         }
 

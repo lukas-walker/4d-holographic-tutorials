@@ -18,6 +18,9 @@ namespace Tutorials
         [SerializeField]
         private Transform animationSpecificPointOfReference;
 
+        [SerializeField]
+        private GameObject objects;
+
         void OnDestroy()
         {
             FileHandler.SaveAnimationList();
@@ -182,9 +185,11 @@ namespace Tutorials
             if (player.IsPlaying())
             {
                 player.Stop();
+                objects.SetActive(true);
             }
             else
             {
+                objects.SetActive(false);
                 player.PlayCurrent();
             }
         }

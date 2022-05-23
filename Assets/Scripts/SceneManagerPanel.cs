@@ -5,7 +5,9 @@
 /// </summary>
 public class SceneManagerPanel : MonoBehaviour
 {
-    public GameObject panel;
+    [SerializeField]
+    private GameObject panel;
+
     private void Start()
     {
         panel.SetActive(false);

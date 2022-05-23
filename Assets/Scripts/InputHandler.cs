@@ -136,7 +136,6 @@ namespace Tutorials
                 }
             }
 
-            /*
             lock (countdownText)
             {
                 countdownText = "";
@@ -149,7 +148,6 @@ namespace Tutorials
             }
 
             cancelRecordingCountdownToken.Dispose();
-            */
         }
 
         /// <summary>

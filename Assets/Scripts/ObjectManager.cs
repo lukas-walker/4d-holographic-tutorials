@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -90,6 +91,41 @@ public class ObjectManager : MonoBehaviour
             return "None";
         }
         return lastInteractedObject.name;
+    }
+
+    /// <summary>
+    /// Get original objects by name
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetOriginalObject(string name)
+    {
+        if (originalObjects.TryGetValue(name, out GameObject obj))
+        {
+            return obj;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Get spawned objects by name
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetSpawnedObject(string name)
+    {
+        if(spawnedObjects.TryGetValue(name, out GameObject obj))
+        {
+            return obj;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Get a list of spawned objects
+    /// </summary>
+    /// <returns></returns>
+    public List<GameObject> GetSpawnedObjects()
+    {
+        return spawnedObjects.Values.ToList();
     }
 
 }

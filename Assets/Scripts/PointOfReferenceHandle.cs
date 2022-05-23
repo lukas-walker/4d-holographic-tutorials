@@ -7,8 +7,6 @@ public class PointOfReferenceHandle : MonoBehaviour
     [SerializeField]
     private GameObject handle;
 
-    private bool handleIsActive = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -21,16 +19,8 @@ public class PointOfReferenceHandle : MonoBehaviour
 
     }
 
-    public void toggleHandle()
+    public void ToggleHandle()
     {
-        if (!handleIsActive)
-        {
-            handle.SetActive(true);
-            handleIsActive = true;
-        }
-        else { 
-            handle.SetActive(false);
-            handleIsActive = false;
-        }
+        handle.SetActive(!handle.activeSelf);
     }
 }

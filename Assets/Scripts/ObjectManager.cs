@@ -12,7 +12,7 @@ public class ObjectManager : MonoBehaviour
     private GameObject objectManagerPanel;
 
     [SerializeField]
-    private GameObject objects;
+    private GameObject realObjects;
 
     private Dictionary<string, GameObject> originalObjects = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> spawnedObjects = new Dictionary<string, GameObject>();
@@ -27,7 +27,7 @@ public class ObjectManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Transform child in objects.transform)
+        foreach (Transform child in realObjects.transform)
         {
             child.gameObject.SetActive(false);
             originalObjects.Add(child.name, child.gameObject);

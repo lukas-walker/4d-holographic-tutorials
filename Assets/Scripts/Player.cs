@@ -198,7 +198,12 @@ namespace Tutorials
 
             foreach(var entry in animation.objectCurves)
             {
-                string originalName = entry.Key.Substring(0, entry.Key.IndexOf("-")).Trim();
+                int index = entry.Key.IndexOf("-");
+                if (index < 0)
+                {
+                    Debug.Log($"Cannot map {entry.Key} to original objects. Make sure to use the correct naming convention for objects.");
+                }
+                string originalName = entry.Key.Substring(0, index).Trim();
                 GameObject obj = objectManager.GetOriginalObject(originalName);
                 if (obj == null)
                 {

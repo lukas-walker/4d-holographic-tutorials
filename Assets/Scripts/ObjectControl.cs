@@ -22,6 +22,8 @@ public class ObjectControl : MonoBehaviour
         GameObject panel = GameObject.Find("ObjectManagerPanel");
         if (panel == null) return;
 
+        //todo do we really want to hardcode this position?
+
         objectModel.transform.SetPositionAndRotation(panel.transform.position + new Vector3(.0f, .075f, .0f), panel.transform.rotation * objectModel.transform.rotation);
     }
 

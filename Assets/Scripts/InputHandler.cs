@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.Input;
 using TMPro;
@@ -18,10 +21,17 @@ namespace Tutorials
         [SerializeField]
         private Transform animationSpecificPointOfReference;
 
+        // TODO: REMOVE
+        public TextMeshPro recordingCountdownText;
+
         void OnDestroy()
         {
             FileHandler.SaveAnimationList();
         }
+
+        private string countdownText = "";
+        private string shouldStartRecord = "no"; // Using strings because locks don't work on bools
+
         public void Update()
         {
 #if UNITY_EDITOR
@@ -51,6 +61,21 @@ namespace Tutorials
                 Next();
             }
 #endif
+
+            if (recordingCountdownText.text != countdownText)
+            {
+                // Checking value first because it might be more efficient than setting label text on every update
+                recordingCountdownText.text = countdownText;
+            }
+
+            if (shouldStartRecord == "yes")
+            {
+                // Start the recording from the main thread
+                shouldStartRecord = "no";
+                RecordAnimation();
+            }
+
+
         }
 
         private void Start()
@@ -66,14 +91,45 @@ namespace Tutorials
         public void RecordButtonAction()
         {
             // TODO: Grey-out/disable non-recording buttons while recording
+
             if (recorder.IsRecording)
             {
                 SaveAnimation();
             }
             else
             {
-                RecordAnimation();
+                Thread t = new Thread(() => StartCountdownThenRecord());
+                t.Start();
             }
+        }
+
+        public void StartCountdownThenRecord()
+        {
+            //CancellationToken token = (CancellationToken)obj;
+            //Thread.Sleep(1000);
+            //recordingCountdownText.text = "4";
+            for (int i = 5; i > 0; i--)
+            {
+                lock (countdownText)
+                {
+                    countdownText = i.ToString();
+                }
+                Thread.Sleep(1000);
+            }
+
+            lock (countdownText)
+            {
+                countdownText = "";
+            }
+
+            lock (shouldStartRecord)
+            {
+                // Tell the main thread to start recording
+                shouldStartRecord = "yes";
+            }
+
+            
+
         }
 
         /// <summary>
@@ -204,5 +260,6 @@ namespace Tutorials
             FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().rotation_z = animationSpecificPointOfReference.transform.localRotation.z;
             FileHandler.AnimationListInstance.GetCurrentAnimationWrapper().rotation_w = animationSpecificPointOfReference.transform.localRotation.w;
         }
+
     }
 }

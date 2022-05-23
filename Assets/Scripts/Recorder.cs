@@ -1,12 +1,14 @@
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Collections.Generic;
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
 using UnityEngine.Events;
+using TMPro;
 
 
 namespace Tutorials
@@ -32,6 +34,9 @@ namespace Tutorials
         [SerializeField]
         [Tooltip("The point of reference that can be set for each animation specifically (will be stored in animation entity). Default is (0,0,0),(0,0,0,1)")]
         private Transform animationSpecificPointOfReference;
+
+        public TextMeshPro recordingCountdownText;
+
 
         /// <summary>
         /// Event raised when input recording is started.
@@ -144,29 +149,29 @@ namespace Tutorials
         /// </summary>
         public void StartRecording()
         {
-            if (!IsRecording)
+            IsRecording = true;
+
+            eyeGazeProvider = CoreServices.InputSystem.EyeGazeProvider;
+
+            frameRate = FRAMERATE;
+            frameInterval = 1f / frameRate;
+            nextFrame = Time.time + frameInterval;
+
+            if (UseBufferTimeLimit)
             {
-                eyeGazeProvider = CoreServices.InputSystem.EyeGazeProvider;
-                IsRecording = true;
-                frameRate = FRAMERATE;
-                frameInterval = 1f / frameRate;
-                nextFrame = Time.time + frameInterval;
-
-                if (UseBufferTimeLimit)
-                {
-                    PruneBuffer();
-                }
-                if (!unlimitedRecordingStartTime.HasValue)
-                {
-                    unlimitedRecordingStartTime = Time.time;
-                }
-
-                // Get all active objects to track in the scene
-                SetActiveObjectList();
-
-                OnRecordingStarted.Invoke();
+                PruneBuffer();
             }
+            if (!unlimitedRecordingStartTime.HasValue)
+            {
+                unlimitedRecordingStartTime = Time.time;
+            }
+
+            // Get all active objects to track in the scene
+            SetActiveObjectList();
+
+            OnRecordingStarted.Invoke();
         }
+
 
         /// <summary>
         /// Stop Input Recording.
@@ -176,6 +181,7 @@ namespace Tutorials
             if (IsRecording)
             {
                 IsRecording = false;
+                //cts.Cancel(); // Cancel the start thread if it has been less than 5 seconds and it is active
                 OnRecordingStopped.Invoke();
             }
         }

@@ -103,25 +103,24 @@ namespace Tutorials
             List<GameObject> spawnedObjects = objectManager.GetSpawnedObjects();
             foreach (GameObject obj in spawnedObjects)
             {
-                GameObject clone = Instantiate(obj, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
+                GameObject clone = Instantiate(obj,
+                    animationSpecificPointOfReference);
                 clone.SetActive(false);
-                clone.transform.parent = animationSpecificPointOfReference.transform;
                 objectList.Add(obj, clone);
+                Debug.Log($"Object position at recording: {clone.transform.position}");
             }
         }
 
         private void Start()
         {
             // instatiate the (invisible) hand model that is used by the recording service
-            recordingHandLeft = Instantiate(handLeftPrefab, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
+            recordingHandLeft = Instantiate(handLeftPrefab, animationSpecificPointOfReference);
             recordingHandLeft.SetActive(false);
-            recordingHandLeft.transform.parent = animationSpecificPointOfReference.transform; //set this as parent. 
             recordingHandLeft.name = "RecorderLeftHand";
 
             // instatiate the (invisible) hand model that is used by the recording service
-            recordingHandRight = Instantiate(handRightPrefab, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
+            recordingHandRight = Instantiate(handRightPrefab, animationSpecificPointOfReference);
             recordingHandRight.SetActive(false);
-            recordingHandRight.transform.parent = animationSpecificPointOfReference.transform; //set this as parent.
             recordingHandRight.name = "RecorderRightHand";
 
             InitializeDictionary(recordingHandLeft.transform, recordingHandRight.transform);
@@ -654,13 +653,16 @@ namespace Tutorials
 
         /// <summary>
         /// Records the transformations for each object in the current key frame
+        /// Note that the positions of the instantiated and recorded objects are recorded in relation to the reference point (therefore local)
+        /// However, the tracked (displayed) objects are not in relation to the reference point as we do not want them to change positions when moving
+        /// the reference point handle.
         /// </summary>
         private void RecordInputObjects()
         {
             foreach(var obj in objectList)
             {
-                obj.Value.transform.position = obj.Key.transform.localPosition;
-                obj.Value.transform.rotation = obj.Key.transform.localRotation;
+                obj.Value.transform.localPosition = animationSpecificPointOfReference.InverseTransformPoint(obj.Key.transform.position);
+                obj.Value.transform.localRotation = Quaternion.Inverse(animationSpecificPointOfReference.rotation) * obj.Key.transform.rotation;
                 obj.Value.transform.localScale = obj.Key.transform.localScale;
                 RecordingBuffer.SetObjectState(obj.Value.transform);
             }

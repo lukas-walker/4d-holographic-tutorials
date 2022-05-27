@@ -194,10 +194,9 @@ namespace Tutorials
                     Debug.Log($"GameObject with name {originalName} could not be found.");
                     continue;
                 }
-                GameObject clone = Instantiate(obj, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
+                GameObject clone = Instantiate(obj, animationSpecificPointOfReference);
                 RemoveNonEssentialComponents(clone);
                 clone.SetActive(false);
-                clone.transform.parent = animationSpecificPointOfReference;
                 clone.name = entry.Key;
                 objectList.Add(clone);
             }

@@ -23,10 +23,6 @@ namespace Tutorials
 
         private bool isPlaying = false;
 
-        // Used in mode for a user study, where a level (an animation) is not immediately replayed after loading and is only played once.
-        // This allows loading an animation with e.g. "Next" voice command and then getting ready, before starting the animation replay with "Start Level" voice command.
-        private bool isPausing = false;
-
         /// <summary>
         /// Duration of the played animation.
         /// </summary>
@@ -96,17 +92,6 @@ namespace Tutorials
 
         private bool startAgain = false;
 
-        /// <summary>
-        /// If the start frame slider is currently grabbed by the user, i.e. the value of the start frame is changing, the playback should pause until the slider is released again. 
-        /// </summary>
-        private bool startFrameChanging = false;
-
-        /// <summary>
-        /// If the start frame slider is currently grabbed by the user, i.e. the value of the start frame is changing, the playback should pause until the slider is released again. 
-        /// </summary>
-        private bool endFrameChanging = false;
-
-
         public void Start()
         {
             // instantiating the left hand object that will be animated
@@ -165,7 +150,6 @@ namespace Tutorials
             localTime = 0.0f;
 
             isPlaying = true;
-            isPausing = true;
         }
 
         /// <summary>
@@ -291,20 +275,9 @@ namespace Tutorials
                 {
                     localTime = Duration * (float)animationWrapper.StartFrame;
                     startAgain = false;
-
-                    isPausing = true;
                 }
             }
         }
-
-        /// <summary>
-        /// Starts the level (the playback). This is used in study mode, when each playback has to be started with "Start Level" voice command.
-        /// </summary>
-        public void StartLevel()
-        {
-            isPausing = false;
-        }
-
 
         /// Evaluate the animation at localTime
         private void Evaluate()

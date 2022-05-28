@@ -109,15 +109,7 @@ namespace Tutorials
             riggedHandRight.SetActive(false);
             riggedHandRight.transform.parent = animationSpecificPointOfReference;
             riggedHandRight.name = "PlaybackServiceRightHand";
-
             riggedHandVisualizerRight = riggedHandRight.GetComponent<RiggedHandVisualizer>();
-
-            // Commented as I think recordings should only be played when issued by the user through the playback button.
-
-            // if the current animation in the editor changes, the new animation will be loaded and played back in the playback service.
-            //FileHandler.AnimationListInstance.CurrentAnimationChanged.AddListener(PlayCurrent);
-
-            //PlayCurrent();
         }
 
         /// <summary>
@@ -155,7 +147,7 @@ namespace Tutorials
         /// <summary>
         /// Remove all components not needed for animation
         /// </summary>
-        private void RemoveNonEssentialComponents(GameObject obj)
+        private void AdjustComponents(GameObject obj)
         {
             foreach (var comp in obj.GetComponents<Component>())
             {
@@ -165,6 +157,7 @@ namespace Tutorials
                 }
             }
             Destroy(obj.GetComponent<ConstraintManager>());
+            obj.GetComponent<MeshRenderer>().material = animatingMaterial;
         }
 
         /// <summary>
@@ -195,7 +188,7 @@ namespace Tutorials
                     continue;
                 }
                 GameObject clone = Instantiate(obj, animationSpecificPointOfReference);
-                RemoveNonEssentialComponents(clone);
+                AdjustComponents(clone);
                 clone.SetActive(false);
                 clone.name = entry.Key;
                 objectList.Add(clone);

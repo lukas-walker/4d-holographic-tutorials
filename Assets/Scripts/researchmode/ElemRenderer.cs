@@ -10,7 +10,7 @@ namespace Tutorials.ResearchMode
     /// </summary>
     public class ElemRenderer : MonoBehaviour
     {
-        Mesh mesh;
+        public Mesh mesh;
         
         public void UpdateMesh(Vector3[] arrVertices, int nPointsToRender, int nPointsRendered, Color pointColor)
         {

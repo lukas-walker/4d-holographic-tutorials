@@ -17,7 +17,16 @@ namespace QRTracking
 
         [SerializeField]
         [Tooltip("Text in the QR Code that indicates to recognize a QRCode as Origin")]
-        private string OriginCodeText;
+        private string OriginCodeText = "4DTutorials";
+
+        [SerializeField]
+        [Tooltip("Accept any text in any QR Code. (Ignore Origin Code Text)")]
+        private bool AcceptAnyText = false;
+
+
+        [SerializeField]
+        [Tooltip("Update QR Code location constantly, i.e. whenever it is tracked. (almost each frame)")]
+        private bool UpdateConstantly = false;
 
         private DateTimeOffset startTime;
 
@@ -119,7 +128,7 @@ namespace QRTracking
                         qrCodeObject.GetComponent<QRCode>().SetOrigin(origin);
                         qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject);
                         
-                        if (qrCodeObject.GetComponent<QRCode>().CodeText == OriginCodeText)
+                        if (AcceptAnyText || qrCodeObject.GetComponent<QRCode>().CodeText == OriginCodeText)
                         {
                             qrCodeObject.GetComponent<QRCode>().UpdateOrigin();
                         }
@@ -137,17 +146,22 @@ namespace QRTracking
                             qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
                             qrCodeObject.GetComponent<QRCode>().SetOrigin(origin);
                             qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject);
-                            if (qrCodeObject.GetComponent<QRCode>().CodeText == OriginCodeText)
+                            if (AcceptAnyText || qrCodeObject.GetComponent<QRCode>().CodeText == OriginCodeText)
                             {
                                 qrCodeObject.GetComponent<QRCode>().UpdateOrigin();
                             }
                         }
                         else {
                             // not sure if this is necessary, I think the qrCode object from the QRCodesManager stays the same object.
-                            GameObject qrcode;
-                            qrCodesObjectsList.TryGetValue(action.qrCode.Id, out qrcode);
-                            if (qrcode != null) {
-                                qrcode.GetComponent<QRCode>().qrCode = action.qrCode;
+                            GameObject qrCodeObject;
+                            qrCodesObjectsList.TryGetValue(action.qrCode.Id, out qrCodeObject);
+                            if (qrCodeObject != null) {
+                                qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
+
+                                if ((AcceptAnyText || qrCodeObject.GetComponent<QRCode>().CodeText == OriginCodeText) && UpdateConstantly)
+                                {
+                                    qrCodeObject.GetComponent<QRCode>().UpdateOrigin();
+                                }
                             }
                         }
                     }

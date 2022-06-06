@@ -14,7 +14,7 @@ namespace Tutorials
     /// Whenever the state changes (i.e. animations are added, removed, etc.), this instance invokes the event CurrentAnimationChanged to let listeners (like the PlaybackService) know that the current animation has changed.
     /// This class can be serialized and will be saved to the persistend data path in the datafile.xml. 
     /// </summary>
-    [XmlRootAttribute("AnimationList", Namespace = "http://rimon-ar.ch/", IsNullable = false)]
+    [XmlRootAttribute("AnimationList", Namespace = "http://www.example.com", IsNullable = false)]
     public class AnimationList
     {
         /// <summary>

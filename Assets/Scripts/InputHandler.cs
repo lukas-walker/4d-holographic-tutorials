@@ -24,11 +24,6 @@ namespace Tutorials
         [SerializeField]
         private GameObject objects;
 
-        void OnDestroy()
-        {
-            FileHandler.SaveAnimationList();
-        }
-
         public TextMeshPro recordingCountdownText;
 
         private string countdownText = "";
@@ -173,19 +168,6 @@ namespace Tutorials
         public void CreateNewAnimationWrapper()
         {
             recorder.CreateNewAnimationWrapper();
-        }
-
-        /// <summary>
-        /// Called when the user makes a choice in the overwrite dialog. If the user chooses yes (i.e. the recording should start, overwriting the current content), the recording service is activated. 
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        private void OnOverwriteDialogClosed(DialogResult obj)
-        {
-            if (obj.Result == DialogButtonType.Yes)
-            {
-                recorder.StartRecording();
-
-            }
         }
 
         /// <summary>

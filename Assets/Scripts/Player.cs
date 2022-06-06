@@ -23,10 +23,6 @@ namespace Tutorials
 
         private bool isPlaying = false;
 
-        // Used in mode for a user study, where a level (an animation) is not immediately replayed after loading and is only played once.
-        // This allows loading an animation with e.g. "Next" voice command and then getting ready, before starting the animation replay with "Start Level" voice command.
-        private bool isPausing = false;
-
         /// <summary>
         /// Duration of the played animation.
         /// </summary>
@@ -96,17 +92,6 @@ namespace Tutorials
 
         private bool startAgain = false;
 
-        /// <summary>
-        /// If the start frame slider is currently grabbed by the user, i.e. the value of the start frame is changing, the playback should pause until the slider is released again. 
-        /// </summary>
-        private bool startFrameChanging = false;
-
-        /// <summary>
-        /// If the start frame slider is currently grabbed by the user, i.e. the value of the start frame is changing, the playback should pause until the slider is released again. 
-        /// </summary>
-        private bool endFrameChanging = false;
-
-
         public void Start()
         {
             // instantiating the left hand object that will be animated
@@ -124,15 +109,7 @@ namespace Tutorials
             riggedHandRight.SetActive(false);
             riggedHandRight.transform.parent = animationSpecificPointOfReference;
             riggedHandRight.name = "PlaybackServiceRightHand";
-
             riggedHandVisualizerRight = riggedHandRight.GetComponent<RiggedHandVisualizer>();
-
-            // Commented as I think recordings should only be played when issued by the user through the playback button.
-
-            // if the current animation in the editor changes, the new animation will be loaded and played back in the playback service.
-            //FileHandler.AnimationListInstance.CurrentAnimationChanged.AddListener(PlayCurrent);
-
-            //PlayCurrent();
         }
 
         /// <summary>
@@ -165,13 +142,12 @@ namespace Tutorials
             localTime = 0.0f;
 
             isPlaying = true;
-            isPausing = true;
         }
 
         /// <summary>
         /// Remove all components not needed for animation
         /// </summary>
-        private void RemoveNonEssentialComponents(GameObject obj)
+        private void AdjustComponents(GameObject obj)
         {
             foreach (var comp in obj.GetComponents<Component>())
             {
@@ -181,6 +157,7 @@ namespace Tutorials
                 }
             }
             Destroy(obj.GetComponent<ConstraintManager>());
+            obj.GetComponent<MeshRenderer>().material = animatingMaterial;
         }
 
         /// <summary>
@@ -210,10 +187,9 @@ namespace Tutorials
                     Debug.Log($"GameObject with name {originalName} could not be found.");
                     continue;
                 }
-                GameObject clone = Instantiate(obj, animationSpecificPointOfReference.position, animationSpecificPointOfReference.rotation);
-                RemoveNonEssentialComponents(clone);
+                GameObject clone = Instantiate(obj, animationSpecificPointOfReference);
+                AdjustComponents(clone);
                 clone.SetActive(false);
-                clone.transform.parent = animationSpecificPointOfReference;
                 clone.name = entry.Key;
                 objectList.Add(clone);
             }
@@ -291,20 +267,9 @@ namespace Tutorials
                 {
                     localTime = Duration * (float)animationWrapper.StartFrame;
                     startAgain = false;
-
-                    isPausing = true;
                 }
             }
         }
-
-        /// <summary>
-        /// Starts the level (the playback). This is used in study mode, when each playback has to be started with "Start Level" voice command.
-        /// </summary>
-        public void StartLevel()
-        {
-            isPausing = false;
-        }
-
 
         /// Evaluate the animation at localTime
         private void Evaluate()

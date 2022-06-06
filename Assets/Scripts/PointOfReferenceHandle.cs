@@ -13,12 +13,6 @@ public class PointOfReferenceHandle : MonoBehaviour
         handle.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ToggleHandle()
     {
         handle.SetActive(!handle.activeSelf);

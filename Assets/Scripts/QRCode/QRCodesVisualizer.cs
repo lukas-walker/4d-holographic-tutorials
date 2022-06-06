@@ -122,14 +122,15 @@ namespace QRTracking
                         // only handle QR Code if it's been tracked after this program's start time
                         if (startTime >= action.qrCode.LastDetectedTime) continue;
 
-                        GameObject qrCodeObject = Instantiate(qrCodePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                        qrCodeObject.GetComponent<SpatialGraphNodeTracker>().Id = action.qrCode.SpatialGraphNodeId;
-                        qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
-                        qrCodeObject.GetComponent<QRCode>().SetOrigin(origin);
-                        qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject);
-                        
-                        if (AcceptAnyText || qrCodeObject.GetComponent<QRCode>().CodeText == OriginCodeText)
+                        if (AcceptAnyText || action.qrCode.Data == OriginCodeText) 
                         {
+                            GameObject qrCodeObject = Instantiate(qrCodePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                            qrCodeObject.GetComponent<SpatialGraphNodeTracker>().Id = action.qrCode.SpatialGraphNodeId;
+                            qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
+                            qrCodeObject.GetComponent<QRCode>().SetOrigin(origin);
+                            qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject);
+                        
+                        
                             qrCodeObject.GetComponent<QRCode>().UpdateOrigin();
                         }
                     }
@@ -141,25 +142,25 @@ namespace QRTracking
                         // if there's no QR Code Object associated with the updated QR Code yet, a new QR Code will be instantiated
                         if (!qrCodesObjectsList.ContainsKey(action.qrCode.Id))
                         {
-                            GameObject qrCodeObject = Instantiate(qrCodePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                            qrCodeObject.GetComponent<SpatialGraphNodeTracker>().Id = action.qrCode.SpatialGraphNodeId;
-                            qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
-                            qrCodeObject.GetComponent<QRCode>().SetOrigin(origin);
-                            qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject);
-                            if (AcceptAnyText || qrCodeObject.GetComponent<QRCode>().CodeText == OriginCodeText)
+                            if (AcceptAnyText || action.qrCode.Data == OriginCodeText)
                             {
+                                GameObject qrCodeObject = Instantiate(qrCodePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                                qrCodeObject.GetComponent<SpatialGraphNodeTracker>().Id = action.qrCode.SpatialGraphNodeId;
+                                qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
+                                qrCodeObject.GetComponent<QRCode>().SetOrigin(origin);
+                                qrCodesObjectsList.Add(action.qrCode.Id, qrCodeObject);
+                            
                                 qrCodeObject.GetComponent<QRCode>().UpdateOrigin();
                             }
                         }
                         else {
-                            // not sure if this is necessary, I think the qrCode object from the QRCodesManager stays the same object.
-                            GameObject qrCodeObject;
-                            qrCodesObjectsList.TryGetValue(action.qrCode.Id, out qrCodeObject);
-                            if (qrCodeObject != null) {
-                                qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
-
-                                if ((AcceptAnyText || qrCodeObject.GetComponent<QRCode>().CodeText == OriginCodeText) && UpdateConstantly)
-                                {
+                            if ((AcceptAnyText || action.qrCode.Data == OriginCodeText) && UpdateConstantly)
+                            {
+                                // not sure if this is necessary, I think the qrCode object from the QRCodesManager stays the same object.
+                                GameObject qrCodeObject;
+                                qrCodesObjectsList.TryGetValue(action.qrCode.Id, out qrCodeObject);
+                                if (qrCodeObject != null) {
+                                    qrCodeObject.GetComponent<QRCode>().qrCode = action.qrCode;
                                     qrCodeObject.GetComponent<QRCode>().UpdateOrigin();
                                 }
                             }

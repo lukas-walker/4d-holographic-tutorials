@@ -18,6 +18,7 @@ namespace Tutorials.ResearchMode
 
         void Start()
         {
+            Debug.Log("Starting");
             elems = new List<GameObject>();
             UpdatePointSize();
         }
@@ -38,6 +39,7 @@ namespace Tutorials.ResearchMode
 
         public void Render(Vector3[] arrVertices, Color pointColor)
         {
+            Debug.Log("rendering points!");
             int nPoints, nChunks;
             if (arrVertices == null)
             {
@@ -88,6 +90,46 @@ namespace Tutorials.ResearchMode
                 Destroy(elems[0]);
                 elems.Remove(elems[0]);
             }
+        }
+
+        public Vector3[] GetAllMeshPoints()
+        {
+            Vector3[] allPoints = new Vector3[GetNumberOfMeshPoints()];
+
+            int counter = 0;
+            for (int i = 0; i < elems.Count; i++)
+            {
+                ElemRenderer renderer = elems[i].GetComponent<ElemRenderer>();
+                for (int j = 0; j < renderer.mesh.vertices.Length; j++)
+                {
+                    allPoints[counter] = renderer.mesh.vertices[j];
+                    counter++;
+                }
+                
+            }
+
+            return allPoints;
+        }
+
+
+        public int GetNumberOfMeshPoints()
+        {
+            int totalPoints = 0;
+            for (int i = 0; i < elems.Count; i++)
+            {
+                ElemRenderer renderer = elems[i].GetComponent<ElemRenderer>();
+                totalPoints += renderer.mesh.vertices.Length;
+            }
+
+            return totalPoints;
+        }
+
+        public Mesh GetPointCloudMesh()
+        {
+            // TODO: Fix whatever this index is so I know which mesh to return
+            ElemRenderer renderer = elems[0].GetComponent<ElemRenderer>();
+            return renderer.mesh;
+
         }
     }
 }

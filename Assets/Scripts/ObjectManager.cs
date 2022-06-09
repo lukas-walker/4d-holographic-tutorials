@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 /// <summary>
 /// Handles arbitrary object behaviour spawned by the object manager panel
 /// </summary>
@@ -18,6 +19,8 @@ public class ObjectManager : MonoBehaviour
     private Dictionary<string, GameObject> spawnedObjects = new Dictionary<string, GameObject>();
 
     private GameObject lastInteractedObject;
+
+    private GameObject userDefinedOjbect;
 
     /// <summary>
     /// Gives each instance a new ID
@@ -45,7 +48,7 @@ public class ObjectManager : MonoBehaviour
     /// </summary>
     public void SpawnObject(string type)
     {
-        if(!originalObjects.TryGetValue(type, out GameObject objectModel))
+        if (!originalObjects.TryGetValue(type, out GameObject objectModel))
         {
             Debug.Log($"Object type not available: {type}");
             return;
@@ -86,7 +89,7 @@ public class ObjectManager : MonoBehaviour
     /// <returns></returns>
     public string GetLastInteractedObjectName()
     {
-        if(lastInteractedObject == null)
+        if (lastInteractedObject == null)
         {
             return "None";
         }
@@ -112,7 +115,7 @@ public class ObjectManager : MonoBehaviour
     /// <returns></returns>
     public GameObject GetSpawnedObject(string name)
     {
-        if(spawnedObjects.TryGetValue(name, out GameObject obj))
+        if (spawnedObjects.TryGetValue(name, out GameObject obj))
         {
             return obj;
         }
@@ -126,6 +129,28 @@ public class ObjectManager : MonoBehaviour
     public List<GameObject> GetSpawnedObjects()
     {
         return spawnedObjects.Values.ToList();
+    }
+
+    /// <summary>
+    /// Only use for when the user is defining an object with the bounding box
+    /// </summary>
+    public void AddSpawnedObject(GameObject userObj)
+    {
+        if (spawnedObjects.ContainsKey("userdefined"))
+        {
+            // Remove old user created object if there is one
+            spawnedObjects.Remove("userdefined");
+        }
+        userObj.name = "userdefined";
+        spawnedObjects.Add(userObj.name, userObj);
+        Debug.Log("Added object to the list of spawned objects");
+
+        userDefinedOjbect = userObj;
+    }
+
+    public GameObject GetUserDefinedObject()
+    {
+        return userDefinedOjbect;
     }
 
 }

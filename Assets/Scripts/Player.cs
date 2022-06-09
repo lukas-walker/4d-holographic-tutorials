@@ -175,23 +175,45 @@ namespace Tutorials
 
             foreach(var entry in animation.objectCurves)
             {
+                GameObject obj = null;
                 int index = entry.Key.IndexOf("-");
                 if (index < 0)
                 {
-                    Debug.Log($"Cannot map {entry.Key} to original objects. Make sure to use the correct naming convention for objects.");
+                    Debug.Log("entry is " + entry.Key);
+                    if (entry.Key == "userdefined(Clone)")
+                    {
+                        // Special case of user created object
+                        obj = objectManager.GetUserDefinedObject();
+                        if (obj == null)
+                        {
+                            Debug.Log("Cannot locate the user-defined object");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log($"Cannot map {entry.Key} to original objects. Make sure to use the correct naming convention for objects.");
+                    }
                 }
-                string originalName = entry.Key.Substring(0, index).Trim();
-                GameObject obj = objectManager.GetOriginalObject(originalName);
-                if (obj == null)
+                else
                 {
-                    Debug.Log($"GameObject with name {originalName} could not be found.");
-                    continue;
+                    string originalName = entry.Key.Substring(0, index).Trim();
+                    obj = objectManager.GetOriginalObject(originalName);
+                    if (obj == null)
+                    {
+                        Debug.Log($"GameObject with name {originalName} could not be found.");
+                        continue;
+                    }
                 }
-                GameObject clone = Instantiate(obj, animationSpecificPointOfReference);
-                AdjustComponents(clone);
-                clone.SetActive(false);
-                clone.name = entry.Key;
-                objectList.Add(clone);
+
+                if (obj != null)
+                {
+                    GameObject clone = Instantiate(obj, animationSpecificPointOfReference);
+                    AdjustComponents(clone);
+                    clone.SetActive(false);
+                    clone.name = entry.Key;
+                    objectList.Add(clone);
+                }
+                
             }
         }
         /// <summary>

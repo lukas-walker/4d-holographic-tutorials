@@ -187,13 +187,14 @@ namespace Tutorials.ResearchMode
             
             // TODO: Remove. This is manually adding a few points for testing
             
-            Vector3[] datatest = new Vector3[5];
+            /*Vector3[] datatest = new Vector3[5];
             datatest[0] = new Vector3(0.0f, 0.0f, -0.01f);
             datatest[1] = new Vector3(0.01f, 0.0f, 0.0f);
             datatest[2] = new Vector3(0.0f, 0.01f, 0.0f);
             datatest[3] = new Vector3(0.01f, 0.01f, 0.01f);
             datatest[4] = new Vector3(0.01f, 0.01f, 0.0f);
             pointCloudRenderer.Render(datatest, pointColor);
+            */
             
         }
 

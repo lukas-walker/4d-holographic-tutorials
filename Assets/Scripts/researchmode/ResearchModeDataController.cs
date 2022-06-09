@@ -5,6 +5,8 @@ using System;
 using System.Runtime.InteropServices;
 using Tutorials.ResearchMode;
 using TMPro;
+using Tutorials;
+using Microsoft.MixedReality.Toolkit.UI.BoundsControl;
 
 
 #if ENABLE_WINMD_SUPPORT
@@ -44,8 +46,13 @@ namespace Tutorials.ResearchMode
         public TextMeshPro text;
 
         List<Vector3> pointCloudPoints;
-        private bool isRecordingPoints = false;
+        private bool isRecordingPoints;
         public GameObject boundingBox;
+        GameObject convexHullObject;
+
+        public GameObject existingObject;
+
+        public ObjectManager objectManager;
         
 
 #if ENABLE_WINMD_SUPPORT
@@ -73,6 +80,7 @@ namespace Tutorials.ResearchMode
             _remoteConnection = GetComponent<RemoteConnection>();
             InitResearchMode();
 
+            isRecordingPoints = false;
             pointCloudPoints = new List<Vector3>();
         }
 
@@ -167,10 +175,10 @@ namespace Tutorials.ResearchMode
             pointCloudRenderer.Render(data, pointColor);
             // TODO: HERE DO THE UPDATE TO THE CAPTURED POINTS IN THE BOUNDING BOX IF WE 
             //       ARE CURRENTLY CAPTURING
-            if (isRecordingPoints)
+            /*if (isRecordingPoints)
             {
                 CaptureBoundingBoxPointCloud();
-            }
+            }*/
         }
 
         public void TogglePointCloudRendering() {
@@ -178,19 +186,20 @@ namespace Tutorials.ResearchMode
             pointCloudRendererGo.SetActive(_renderPointCloud);
             
             // TODO: Remove. This is manually adding a few points for testing
+            /*
             Vector3[] datatest = new Vector3[5];
             datatest[0] = new Vector3(0.0f, 0.0f, -0.01f);
             datatest[1] = new Vector3(0.01f, 0.0f, 0.0f);
             datatest[2] = new Vector3(0.0f, 0.01f, 0.0f);
             datatest[3] = new Vector3(0.01f, 0.01f, 0.01f);
-            datatest[4] = new Vector3(0.02f, 0.02f, 0.0f);
+            datatest[4] = new Vector3(0.01f, 0.01f, 0.0f);
             pointCloudRenderer.Render(datatest, pointColor);
+            */
         }
 
         public void TogglePointCloudCapture()
         {
-            CaptureBoundingBoxPointCloud();
-            ConvertPointsToMesh();
+            Debug.Log("is recording points value is: " +  isRecordingPoints.ToString());
             if (!isRecordingPoints)
             {
                 // Not currently recording so start
@@ -224,7 +233,7 @@ namespace Tutorials.ResearchMode
             foreach (Vector3 vec in mesh.vertices)
             {
                 //Debug.Log(vec.ToString());
-                if (boundingCollider.bounds.Contains(vec))// && !pointCloudPoints.Contains(vec))
+                if (boundingCollider.bounds.Contains(vec) && !pointCloudPoints.Contains(vec))
                 {
 
                     // TODO: CHECK THAT THE POINT IS NOT ALREADY IN THE lIST IS ACTUALLY WORKING
@@ -239,15 +248,14 @@ namespace Tutorials.ResearchMode
 
         public void ConvertPointsToMesh()
         {
-            Debug.Log("Creating mesh");
             int numNewPoints = pointCloudPoints.Count;
-            Debug.Log("Num points: " + numNewPoints.ToString());
-            Debug.Log(pointCloudPoints);
+            //Debug.Log("Num points: " + numNewPoints.ToString());
+           // Debug.Log(pointCloudPoints);
 
-            foreach (Vector3 elem in pointCloudPoints)
+            /*foreach (Vector3 elem in pointCloudPoints)
             {
                 Debug.Log(elem.x.ToString() + " " + elem.y.ToString() + " " + elem.z.ToString());
-            }
+            }*/
 
             text.text = numNewPoints.ToString();
 
@@ -271,23 +279,63 @@ namespace Tutorials.ResearchMode
             var verts = new List<Vector3>();
             var tris = new List<int>();
             var normals = new List<Vector3>();
-            calc.GenerateHull(pointCloudPoints, false, ref verts, ref tris, ref normals);
+
+            if (convexHullObject != null)
+            {
+                // Remove the old object from the scene (even if we aren't able to replace it)
+                Destroy(convexHullObject);
+            }
+
+            try
+            {
+                calc.GenerateHull(pointCloudPoints, false, ref verts, ref tris, ref normals);
+            } catch (Exception e)
+            {
+                Debug.Log("Error capturing points to use for the mesh. Are you capturing more than 4 co-planar points?");
+                return;
+            }
 
 
             newMesh.SetVertices(verts);
             newMesh.SetTriangles(tris, 0);
             newMesh.SetNormals(normals);
 
-            GameObject newObject = new GameObject("Empty");
-            newObject.AddComponent<MeshFilter>();
-            var mr = newObject.AddComponent<MeshRenderer>();
+            //convexHullObject = new GameObject("Convex Hull Object");
+            
+            /*
+            convexHullObject.AddComponent<MeshFilter>();
+            var mr = convexHullObject.AddComponent<MeshRenderer>();
             Shader shades = Shader.Find("Standard");
             mr.material.shader = shades;
             //mr.material = Resources.Load<Material>("defaultObjectMat");
-            mr.material.color = Color.white;
-            newObject.GetComponent<MeshFilter>().mesh = newMesh;
+            mr.material.color = Color.black;
+            convexHullObject.GetComponent<MeshFilter>().mesh = newMesh;
+            */
+            //Destroy(existingObject.GetComponent<MeshFilter>());
+            //existingObject.AddComponent<MeshFilter>();
+            //var mr2 = existingObject.AddComponent<MeshRenderer>();
+            //Shader shades2 = Shader.Find("Standard");
+            //mr2.material.shader = shades2;
+            //mr.material = Resources.Load<Material>("defaultObjectMat");
+            //mr2.material.color = Color.white;
+            //existingObject.GetComponent<MeshFilter>().mesh = newMesh;
 
-            newObject.SetActive(true);
+
+
+            existingObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            //Destroy(existingObject.GetComponent<BoundsControl>());
+            //existingObject.AddComponent<BoundsControl>();
+            //existingObject.GetComponent<BoundsControl>().BoxPadding = new Vector3(0.0f, 0.0f, 0.0f);
+            // scale is correct but the surrounding box is way too big!
+
+            // Relocate the object onto the bounding box if the user had previously moved it and is creating a new mesh
+            existingObject.transform.position = boundingBox.transform.position;
+
+            existingObject.GetComponent<MeshFilter>().mesh = newMesh;
+            existingObject.SetActive(true);
+            objectManager.AddSpawnedObject(existingObject);
+
+            //convexHullObject.SetActive(true);
         }
 
 

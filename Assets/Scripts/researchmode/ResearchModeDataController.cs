@@ -186,7 +186,7 @@ namespace Tutorials.ResearchMode
             pointCloudRendererGo.SetActive(_renderPointCloud);
             
             // TODO: Remove. This is manually adding a few points for testing
-            /*
+            
             Vector3[] datatest = new Vector3[5];
             datatest[0] = new Vector3(0.0f, 0.0f, -0.01f);
             datatest[1] = new Vector3(0.01f, 0.0f, 0.0f);
@@ -194,7 +194,7 @@ namespace Tutorials.ResearchMode
             datatest[3] = new Vector3(0.01f, 0.01f, 0.01f);
             datatest[4] = new Vector3(0.01f, 0.01f, 0.0f);
             pointCloudRenderer.Render(datatest, pointColor);
-            */
+            
         }
 
         public void TogglePointCloudCapture()
@@ -204,14 +204,16 @@ namespace Tutorials.ResearchMode
             {
                 // Not currently recording so start
 
-                // TODO: Need to remove old mesh
+                boundingBox.SetActive(true);
                 Debug.Log("need to remove old mesh");
                 pointCloudPoints.Clear();
                 CaptureBoundingBoxPointCloud();
+                ConvertPointsToMesh();
             }
             else
             {
-                ConvertPointsToMesh();
+                boundingBox.SetActive(false);
+                pointCloudPoints.Clear();
                 Debug.Log("Creating mesh");
             }
             isRecordingPoints = !isRecordingPoints;
@@ -222,8 +224,8 @@ namespace Tutorials.ResearchMode
         /// </summary>
         public void CaptureBoundingBoxPointCloud()
         {
-            Debug.Log("Capturing points in a loop");
             Collider boundingCollider = boundingBox.GetComponent<Collider>();
+            Debug.Log("Capturing points in a loop" + boundingCollider.bounds.ToString());
 
             List<Vector3> containingElements = new List<Vector3>();
 
@@ -232,10 +234,11 @@ namespace Tutorials.ResearchMode
 
             foreach (Vector3 vec in mesh.vertices)
             {
+                Debug.Log("considering a point");
                 //Debug.Log(vec.ToString());
-                if (boundingCollider.bounds.Contains(vec) && !pointCloudPoints.Contains(vec))
+                if (boundingCollider.bounds.Contains(vec))// && !pointCloudPoints.Contains(vec))
                 {
-
+                    Debug.Log("grabbing a point");
                     // TODO: CHECK THAT THE POINT IS NOT ALREADY IN THE lIST IS ACTUALLY WORKING
 
                     containingElements.Add(new Vector3(vec.x, vec.y, vec.z));
@@ -339,27 +342,9 @@ namespace Tutorials.ResearchMode
         }
 
 
-        /*public Mesh BuildSimplifiedConvexMesh(Mesh mesh)
-        {
-            Debug.Log(mesh.triangles.Length / 3 + " tris");
 
-            SplitMeshBuilder builder = new SplitMeshBuilder();
 
-            for (int i = 0; i < 64; i++)
-            {
-                int index = Random.Range(0, mesh.triangles.Length / 3) * 3;
-
-                Vector3[] triangle = new Vector3[] { mesh.vertices[mesh.triangles[index]], mesh.vertices[mesh.triangles[index + 1]], mesh.vertices[mesh.triangles[index + 2]] };
-                Vector2[] uvs = new Vector2[] { mesh.uv[mesh.triangles[index]], mesh.uv[mesh.triangles[index + 1]], mesh.uv[mesh.triangles[index + 2]] };
-
-                builder.AddTriangleToMesh(triangle, uvs);
-            }
-
-            Mesh polygonSoup = builder.Build();
-            Debug.Log(polygonSoup.triangles.Length / 3 + " tris");
-
-            return polygonSoup;
-        }*/
+        
 
     }
 }

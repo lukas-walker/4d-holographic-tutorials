@@ -24,6 +24,12 @@ namespace Tutorials
         [SerializeField]
         private GameObject objects;
 
+        [SerializeField]
+        private TextMeshPro stepNumber;
+
+        [SerializeField]
+        private TextMeshPro stepName;
+
         public TextMeshPro recordingCountdownText;
 
         private string countdownText = "";
@@ -81,6 +87,8 @@ namespace Tutorials
             // adding all the listeners to UnityEvents, C# Events and Actions
             recorder.OnRecordingStarted.AddListener(OnStartRecording);
             recorder.OnRecordingStopped.AddListener(OnStopRecording);
+            FileHandler.AnimationListInstance.CurrentAnimationChanged.AddListener(OnAnimationChanged);
+            OnAnimationChanged();
         }
 
         /// <summary>
@@ -168,6 +176,21 @@ namespace Tutorials
         public void CreateNewAnimationWrapper()
         {
             recorder.CreateNewAnimationWrapper();
+        }
+
+        /// <summary>
+        /// Updates the step number and step name displayed in the recording panel
+        /// </summary>
+        private void OnAnimationChanged()
+        {
+            stepNumber.text = "0 / 0";
+            stepName.text = "None";
+            if (FileHandler.AnimationListInstance == null || FileHandler.AnimationListInstance.CurrentNode == null)
+                return;
+            stepNumber.text = $"{FileHandler.AnimationListInstance.CurrentIndex()} / {FileHandler.AnimationListInstance.Count}";
+            if (FileHandler.AnimationListInstance.CurrentNode.Value == null)
+                return;
+            stepName.text = FileHandler.AnimationListInstance.CurrentNode.Value.Description;
         }
 
         /// <summary>

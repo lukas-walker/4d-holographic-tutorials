@@ -94,20 +94,6 @@ namespace Tutorials
             get { return animations.Count; }
         }
 
-        public int GetCurrentAnimationIndex()
-        {
-            int i = 0;
-            for (LinkedListNode<AnimationWrapper> node = animations.First; node != null; node = node.Next)
-            {
-                if (node == currentNode)
-                {
-                    return i;
-                }
-                i++;
-            }
-            return -1;
-        }
-
         /// <summary>
         /// Access method for the animation entity that is currently active and open in the editor
         /// </summary>
@@ -155,6 +141,7 @@ namespace Tutorials
 
             animationWrapper.Animation = inputAnimation;
 
+            animationWrapper.Description = "Unnamed";
             // if there is already content available, fill the new entity with it (else leave it blank, s.t. it can be filled by recording a new animation)
             if (inputAnimation != null)
             {
@@ -171,7 +158,6 @@ namespace Tutorials
                 }
 
                 animationWrapper.Name = blobFileName;
-                animationWrapper.Description = "Unnamed";
                 animationWrapper.position_x = animationSpecificPointOfReference.localPosition.x;
                 animationWrapper.position_y = animationSpecificPointOfReference.localPosition.y;
                 animationWrapper.position_z = animationSpecificPointOfReference.localPosition.z;
@@ -345,7 +331,7 @@ namespace Tutorials
                 var count = 1;
                 for (var node = animations.First; node != null; node = node.Next, count++)
                 {
-                    if (currentNode.Value.Equals(node.Value))
+                    if (currentNode == node)
                         return count;
                 }
             }

@@ -22,9 +22,6 @@ namespace Tutorials
         private Transform animationSpecificPointOfReference;
 
         [SerializeField]
-        private GameObject objects;
-
-        [SerializeField]
         private TextMeshPro stepNumber;
 
         [SerializeField]
@@ -264,11 +261,9 @@ namespace Tutorials
             if (player.IsPlaying())
             {
                 player.Stop();
-                objects.SetActive(true);
             }
             else
             {
-                objects.SetActive(false);
                 player.PlayCurrent();
             }
         }

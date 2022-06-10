@@ -153,4 +153,14 @@ public class ObjectManager : MonoBehaviour
         return userDefinedOjbect;
     }
 
+    public void ActivateRealObjects()
+    {
+        realObjects.SetActive(true);
+    }
+
+    public void DeactivateRealObjects()
+    {
+        realObjects.SetActive(false);
+    }
+
 }

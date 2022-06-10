@@ -233,8 +233,8 @@ namespace Tutorials
 
             this.animationWrapper = animationWrapper;
             animation = animationWrapper.Animation;
-
             // Get all objects from the animation and make them available
+            objectManager.DeactivateRealObjects();
             InstantiateObjects();
 
             Play();
@@ -254,6 +254,7 @@ namespace Tutorials
         /// </summary>
         public void Stop()
         {
+            objectManager.ActivateRealObjects();
             if (!isPlaying)
             {
                 return;

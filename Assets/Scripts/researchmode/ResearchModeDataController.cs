@@ -186,8 +186,8 @@ namespace Tutorials.ResearchMode
             pointCloudRendererGo.SetActive(_renderPointCloud);
             
             // TODO: Remove. This is manually adding a few points for testing
-            
-            /*Vector3[] datatest = new Vector3[5];
+            /*
+            Vector3[] datatest = new Vector3[5];
             datatest[0] = new Vector3(0.0f, 0.0f, -0.01f);
             datatest[1] = new Vector3(0.01f, 0.0f, 0.0f);
             datatest[2] = new Vector3(0.0f, 0.01f, 0.0f);
@@ -196,16 +196,21 @@ namespace Tutorials.ResearchMode
             pointCloudRenderer.Render(datatest, pointColor);
             */
             
+            
+        }
+
+        public void ToggleBoundingBox()
+        {
+            boundingBox.SetActive(!boundingBox.activeSelf);
         }
 
         public void TogglePointCloudCapture()
         {
-            Debug.Log("is recording points value is: " +  isRecordingPoints.ToString());
             if (!isRecordingPoints)
             {
                 // Not currently recording so start
 
-                boundingBox.SetActive(true);
+                
                 Debug.Log("need to remove old mesh");
                 pointCloudPoints.Clear();
                 CaptureBoundingBoxPointCloud();
@@ -213,7 +218,7 @@ namespace Tutorials.ResearchMode
             }
             else
             {
-                boundingBox.SetActive(false);
+                existingObject.SetActive(false);
                 pointCloudPoints.Clear();
                 Debug.Log("Creating mesh");
             }
@@ -236,11 +241,8 @@ namespace Tutorials.ResearchMode
             foreach (Vector3 vec in mesh.vertices)
             {
                 Debug.Log("considering a point");
-                //Debug.Log(vec.ToString());
-                if (boundingCollider.bounds.Contains(vec))// && !pointCloudPoints.Contains(vec))
+                if (boundingCollider.bounds.Contains(vec))
                 {
-                    Debug.Log("grabbing a point");
-                    // TODO: CHECK THAT THE POINT IS NOT ALREADY IN THE lIST IS ACTUALLY WORKING
 
                     containingElements.Add(new Vector3(vec.x, vec.y, vec.z));
                 }
@@ -253,15 +255,8 @@ namespace Tutorials.ResearchMode
         public void ConvertPointsToMesh()
         {
             int numNewPoints = pointCloudPoints.Count;
-            //Debug.Log("Num points: " + numNewPoints.ToString());
-           // Debug.Log(pointCloudPoints);
 
-            /*foreach (Vector3 elem in pointCloudPoints)
-            {
-                Debug.Log(elem.x.ToString() + " " + elem.y.ToString() + " " + elem.z.ToString());
-            }*/
-
-            text.text = numNewPoints.ToString();
+            //text.text = numNewPoints.ToString();
 
             int[] indices = new int[numNewPoints];
             Color[] colors = new Color[numNewPoints];

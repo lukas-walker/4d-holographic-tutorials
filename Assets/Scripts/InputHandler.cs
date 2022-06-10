@@ -235,6 +235,11 @@ namespace Tutorials
         public void Next()
         {
             FileHandler.AnimationListInstance.Next();
+            if (player.IsPlaying())
+            {
+                player.Stop();
+                player.PlayCurrent();
+            }
         }
 
         /// <summary>
@@ -243,6 +248,11 @@ namespace Tutorials
         public void Previous()
         {
             FileHandler.AnimationListInstance.Previous();
+            if (player.IsPlaying())
+            {
+                player.Stop();
+                player.PlayCurrent();
+            }
         }
 
         /// <summary>

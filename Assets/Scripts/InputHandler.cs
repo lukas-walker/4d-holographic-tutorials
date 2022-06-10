@@ -36,6 +36,12 @@ namespace Tutorials
         [SerializeField]
         private Interactable playStopButton;
 
+        [SerializeField]
+        private GameObject objectManagerPanel;
+
+        [SerializeField]
+        private Interactable objectManagerButton;
+
         public TextMeshPro recordingCountdownText;
 
         private string countdownText = "";
@@ -115,6 +121,8 @@ namespace Tutorials
                 cancelRecordingCountdownToken.Cancel();
                 countdownText = "";
                 recordButton.IsToggled = false;
+                objectManagerButton.IsToggled = true;
+                objectManagerPanel.SetActive(true);
                 return;
             }
 
@@ -123,6 +131,8 @@ namespace Tutorials
             {
                 SaveAnimation();
                 recordButton.IsToggled = false;
+                objectManagerButton.IsToggled = true;
+                objectManagerPanel.SetActive(true);
                 return;   
             }
             // Countdown has not started so user is wanting to start recording
@@ -130,6 +140,8 @@ namespace Tutorials
             cancelRecordingCountdownToken = new CancellationTokenSource();
             Thread t = new Thread(() => StartCountdownThenRecord(cancelRecordingCountdownToken));
             t.Start();
+            objectManagerButton.IsToggled = false;
+            objectManagerPanel.SetActive(false);
         }
 
         public void StartCountdownThenRecord(CancellationTokenSource ct)

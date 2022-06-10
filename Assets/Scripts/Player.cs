@@ -254,12 +254,11 @@ namespace Tutorials
         /// </summary>
         public void Stop()
         {
-            objectManager.ActivateRealObjects();
             if (!isPlaying)
             {
                 return;
             }
-
+            objectManager.ActivateRealObjects();
             localTime = 0.0f;
             isPlaying = false;
             Evaluate();

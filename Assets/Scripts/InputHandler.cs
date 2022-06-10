@@ -100,35 +100,36 @@ namespace Tutorials
         /// <summary>
         /// Record UI button pressed; take correct action to start/stop
         /// </summary>
-        public void RecordButtonAction()
+        public void RecordAction()
         {
-            if (player.IsPlaying())
+            // Do not record while there is an animation playing
+            if (playStopButton.IsToggled)
             {
                 recordButton.IsToggled = false;
                 return;
             }
 
+            // Countdown is currently running and user wants to cancel
+            if (!string.IsNullOrEmpty(countdownText))
+            {
+                cancelRecordingCountdownToken.Cancel();
+                countdownText = "";
+                recordButton.IsToggled = false;
+                return;
+            }
+
+            // User is done recording
             if (recorder.IsRecording)
             {
                 SaveAnimation();
+                recordButton.IsToggled = false;
+                return;   
             }
-            else
-            {
-                if (countdownText != "")
-                {
-                    // Countdown is currently running and user wants to cancel
-                    cancelRecordingCountdownToken.Cancel();
-                    countdownText = "";
-                }
-                else
-                {
-                    // Countdown has not started so user is wanting to start recording
-                    cancelRecordingCountdownToken = new CancellationTokenSource();
-                    Thread t = new Thread(() => StartCountdownThenRecord(cancelRecordingCountdownToken));
-                    t.Start();
-                }
-                
-            }
+            // Countdown has not started so user is wanting to start recording
+            recordButton.IsToggled = true;
+            cancelRecordingCountdownToken = new CancellationTokenSource();
+            Thread t = new Thread(() => StartCountdownThenRecord(cancelRecordingCountdownToken));
+            t.Start();
         }
 
         public void StartCountdownThenRecord(CancellationTokenSource ct)
@@ -178,8 +179,8 @@ namespace Tutorials
             }
 
             recorder.StartRecording();
-            
         }
+
         /// <summary>
         /// Creates a new animation appended to the animation list
         /// </summary>
@@ -301,22 +302,51 @@ namespace Tutorials
         }
 
         /// <summary>
-        /// Play/Stop the current animation when the play button is pressed
+        /// Function to handle speech play playback
         /// </summary>
-        public void PlayButtonAction()
+        public void SpeechPlay()
         {
+            if (playStopButton.IsToggled)
+            {
+                return;
+            }
+            playStopButton.IsToggled = true;
+            PlayAction();
+        }
+
+        /// <summary>
+        /// Function to handle speech stop playback
+        /// </summary>
+        public void SpeechStop()
+        {
+            if (!playStopButton.IsToggled)
+            {
+                return;
+            }
+            playStopButton.IsToggled = false;
+            PlayAction();
+        }
+
+        /// <summary>
+        /// Play/Stop the current animation when issued
+        /// </summary>
+        public void PlayAction()
+        {
+            // Do not play animation if recording
             if(recordButton.IsToggled)
             {
                 playStopButton.IsToggled = false;
                 return;
             }
-            if (player.IsPlaying() && !playStopButton.IsToggled)
-            {
-                player.Stop();
-            }
-            else if (playStopButton.IsToggled)
+            // Start playback
+            if (playStopButton.IsToggled)
             {
                 player.PlayCurrent();
+            }
+            // Stop if currently played back
+            else
+            {
+                player.Stop();
             }
         }
 

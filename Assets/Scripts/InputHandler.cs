@@ -27,6 +27,15 @@ namespace Tutorials
         [SerializeField]
         private TextMeshPro stepName;
 
+        [SerializeField]
+        private StepNameHandler stepNameHandler;
+
+        [SerializeField]
+        private Interactable recordButton;
+
+        [SerializeField]
+        private Interactable playStopButton;
+
         public TextMeshPro recordingCountdownText;
 
         private string countdownText = "";
@@ -93,7 +102,11 @@ namespace Tutorials
         /// </summary>
         public void RecordButtonAction()
         {
-            // TODO: Grey-out/disable non-recording buttons while recording
+            if (player.IsPlaying())
+            {
+                recordButton.IsToggled = false;
+                return;
+            }
 
             if (recorder.IsRecording)
             {
@@ -172,7 +185,20 @@ namespace Tutorials
         /// </summary>
         public void CreateNewAnimationWrapper()
         {
+            if(recordButton.IsToggled)
+                return;
+            player.Stop();
             recorder.CreateNewAnimationWrapper();
+        }
+
+        /// <summary>
+        /// Update the description of the current name through user input
+        /// </summary>
+        public void EditStepName()
+        {
+            if(recordButton.IsToggled)
+                return;
+            stepNameHandler.EditSceneName();
         }
 
         /// <summary>
@@ -218,7 +244,14 @@ namespace Tutorials
         /// </summary>
         public void CloseAnimation()
         {
+            if(recordButton.IsToggled)
+                return;
             recorder.CloseAnimation();
+            if (playStopButton.IsToggled)
+            {
+                player.Stop();
+                player.PlayCurrent();
+            }
         }
 
         /// <summary>
@@ -234,8 +267,10 @@ namespace Tutorials
         /// </summary>
         public void Next()
         {
+            if(recordButton.IsToggled)
+                return;
             FileHandler.AnimationListInstance.Next();
-            if (player.IsPlaying())
+            if (playStopButton.IsToggled)
             {
                 player.Stop();
                 player.PlayCurrent();
@@ -247,8 +282,10 @@ namespace Tutorials
         /// </summary>
         public void Previous()
         {
+            if(recordButton.IsToggled)
+                return;
             FileHandler.AnimationListInstance.Previous();
-            if (player.IsPlaying())
+            if (playStopButton.IsToggled)
             {
                 player.Stop();
                 player.PlayCurrent();
@@ -268,11 +305,16 @@ namespace Tutorials
         /// </summary>
         public void PlayButtonAction()
         {
-            if (player.IsPlaying())
+            if(recordButton.IsToggled)
+            {
+                playStopButton.IsToggled = false;
+                return;
+            }
+            if (player.IsPlaying() && !playStopButton.IsToggled)
             {
                 player.Stop();
             }
-            else
+            else if (playStopButton.IsToggled)
             {
                 player.PlayCurrent();
             }

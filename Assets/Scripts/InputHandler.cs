@@ -104,6 +104,32 @@ namespace Tutorials
         }
 
         /// <summary>
+        /// Function to handle speech recording
+        /// </summary>
+        public void SpeechRecord()
+        {
+            if (recordButton.IsToggled)
+            {
+                return;
+            }
+            recordButton.IsToggled = true;
+            RecordAction();
+        }
+
+        /// <summary>
+        /// Function to handle speech save recording
+        /// </summary>
+        public void SpeechSave()
+        {
+            if (!recordButton.IsToggled)
+            {
+                return;
+            }
+            recordButton.IsToggled = false;
+            RecordAction();
+        }
+
+        /// <summary>
         /// Record UI button pressed; take correct action to start/stop
         /// </summary>
         public void RecordAction()
@@ -184,10 +210,10 @@ namespace Tutorials
         /// </summary>
         public void RecordAnimation()
         {
-
             if (FileHandler.AnimationListInstance.CurrentNode == null)
             {
-                CreateNewAnimationWrapper();
+                player.Stop();
+                recorder.CreateNewAnimationWrapper();
             }
 
             recorder.StartRecording();

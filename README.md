@@ -46,3 +46,23 @@ See [INSTALL file](INSTALL.md)
  * MixedReality/com.microsoft.mixedreality.toolkit.tools-2.7.3.tgz
  * All Mixed Reality packages above are available through the Mixed Reality Feature Tool [Link](https://docs.microsoft.com/en-gb/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool)
  * For a more extensive list of packages used, see [here](Packages/manifest.json)
+
+### Relevant Scripts Written
+ * [Recording](Assets/Scripts/Recorder.cs)
+ * [Buffer for Recording](Assets/Scripts/InputRecordingBuffer.cs)
+ * [Playback](Assets/Scripts/Player.cs)
+ * [Hand Playback](Assets/Scripts/RiggedHandVisualizer.cs)
+ * [User Input](Assets/Scripts/InputHandler.cs)
+ * [Object Management](Assets/Scripts/ObjectManager.cs)
+ * [Point Cloud Management](Assets/Scripts/researchmode)
+ * [Location Invariance QR Code](Assets/Scripts/QRCode)
+ * [Animation Management](Assets/Scripts/AnimationList.cs)
+ * [Animation Management](Assets/Scripts/AnimationWrapper.cs)
+ * [Animation Management](Assets/Scripts/InputAnimation.cs)
+ * [Countdown](Assets/Scripts/CountdownHandler.cs)
+ * [User Interface](Assets/Scripts/FeaturesPanelVisuals.cs)
+ * [User Interface](Assets/Scripts/ScrollablePagination.cs)
+ * [User Interface](Assets/Scripts/SceneManagerPanel.cs)
+ * [User Interface](Assets/Scripts/StepNameHandler.cs)
+ * [User Interface](Assets/Scripts/UpdateObjectName.cs)
+

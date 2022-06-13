@@ -9,8 +9,7 @@ using UnityEngine;
 /// </summary>
 public class ObjectManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject objectManagerPanel;
+    public GameObject objectManagerPanel;
 
     [SerializeField]
     private GameObject realObjects;

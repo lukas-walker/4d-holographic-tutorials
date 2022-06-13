@@ -201,6 +201,10 @@ namespace Tutorials.ResearchMode
 
         public void ToggleBoundingBox()
         {
+            boundingBox.transform.SetPositionAndRotation(
+                objectManager.objectManagerPanel.transform.position + new Vector3(.0f, .1f, .0f),
+                objectManager.objectManagerPanel.transform.rotation * Quaternion.Euler(-45, 0, 0));
+            boundingBox.transform.localScale = new Vector3(1, 1, 1);
             boundingBox.SetActive(!boundingBox.activeSelf);
         }
 

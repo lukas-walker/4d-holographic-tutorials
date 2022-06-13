@@ -35,4 +35,14 @@ Video Playlist: https://www.youtube.com/playlist?list=PL9ljg0RPLMToyLbPvqVUjwlWd
 
 
 ### Getting started
-See INSTALL file.
+See [INSTALL file](INSTALL.md)
+
+### Used packages
+ * MixedReality/com.microsoft.mixedreality.toolkit.examples-2.7.3.tgz
+ * MixedReality/com.microsoft.mixedreality.toolkit.extensions-2.7.3.tgz
+ * MixedReality/com.microsoft.mixedreality.toolkit.foundation-2.7.3.tgz
+ * MixedReality/com.microsoft.mixedreality.toolkit.standardassets-2.7.3.tgz
+ * MixedReality/com.microsoft.mixedreality.toolkit.testutilities-2.7.3.tgz
+ * MixedReality/com.microsoft.mixedreality.toolkit.tools-2.7.3.tgz
+ * All Mixed Reality packages above are available through the Mixed Reality Feature Tool [Link](https://docs.microsoft.com/en-gb/windows/mixed-reality/develop/unity/welcome-to-mr-feature-tool)
+ * For a more extensive list of packages used, see [here](Packages/manifest.json)

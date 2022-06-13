@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Collections;
 using System;
 using System.Runtime.InteropServices;
 using Tutorials.ResearchMode;
@@ -53,6 +54,7 @@ namespace Tutorials.ResearchMode
         public GameObject existingObject;
 
         public ObjectManager objectManager;
+        bool shouldUpdate = true;
         
 
 #if ENABLE_WINMD_SUPPORT
@@ -172,31 +174,15 @@ namespace Tutorials.ResearchMode
         
         protected void OnNewPointCloudData(Vector3[] data)
         {
-            pointCloudRenderer.Render(data, pointColor);
-            // TODO: HERE DO THE UPDATE TO THE CAPTURED POINTS IN THE BOUNDING BOX IF WE 
-            //       ARE CURRENTLY CAPTURING
-            /*if (isRecordingPoints)
+            if (shouldUpdate)
             {
-                CaptureBoundingBoxPointCloud();
-            }*/
+                pointCloudRenderer.Render(data, pointColor);
+            }
         }
 
         public void TogglePointCloudRendering() {
             _renderPointCloud = !_renderPointCloud;
             pointCloudRendererGo.SetActive(_renderPointCloud);
-            
-            // TODO: Remove. This is manually adding a few points for testing
-            /*
-            Vector3[] datatest = new Vector3[5];
-            datatest[0] = new Vector3(0.0f, 0.0f, -0.01f);
-            datatest[1] = new Vector3(0.01f, 0.0f, 0.0f);
-            datatest[2] = new Vector3(0.0f, 0.01f, 0.0f);
-            datatest[3] = new Vector3(0.01f, 0.01f, 0.01f);
-            datatest[4] = new Vector3(0.01f, 0.01f, 0.0f);
-            pointCloudRenderer.Render(datatest, pointColor);
-            */
-            
-            
         }
 
         public void ToggleBoundingBox()
@@ -213,18 +199,15 @@ namespace Tutorials.ResearchMode
             if (!isRecordingPoints)
             {
                 // Not currently recording so start
-
-                
-                Debug.Log("need to remove old mesh");
                 pointCloudPoints.Clear();
                 CaptureBoundingBoxPointCloud();
                 ConvertPointsToMesh();
             }
             else
             {
+                // Remove old object
                 existingObject.SetActive(false);
                 pointCloudPoints.Clear();
-                Debug.Log("Creating mesh");
             }
             isRecordingPoints = !isRecordingPoints;
         }
@@ -235,19 +218,16 @@ namespace Tutorials.ResearchMode
         public void CaptureBoundingBoxPointCloud()
         {
             Collider boundingCollider = boundingBox.GetComponent<Collider>();
-            Debug.Log("Capturing points in a loop" + boundingCollider.bounds.ToString());
 
             List<Vector3> containingElements = new List<Vector3>();
 
-            // Checking point by point might be bad....
             Mesh mesh = pointCloudRenderer.GetPointCloudMesh();
 
             foreach (Vector3 vec in mesh.vertices)
             {
-                Debug.Log("considering a point");
                 if (boundingCollider.bounds.Contains(vec))
                 {
-
+                    // Grab points inside the bounding box
                     containingElements.Add(new Vector3(vec.x, vec.y, vec.z));
                 }
             }
@@ -260,7 +240,7 @@ namespace Tutorials.ResearchMode
         {
             int numNewPoints = pointCloudPoints.Count;
 
-            //text.text = numNewPoints.ToString();
+            text.text = numNewPoints.ToString();
 
             int[] indices = new int[numNewPoints];
             Color[] colors = new Color[numNewPoints];
@@ -268,21 +248,17 @@ namespace Tutorials.ResearchMode
             for (int i = 0; i < numNewPoints; i++)
             {
                 indices[i] = i;
-                colors[i] = Color.blue;
+                colors[i] = Color.green;
             }
 
-            Mesh newMesh = new Mesh();
-            // Create a vertice copy and convert to array
-            //newMesh.vertices = (new List<Vector3>(containingElements)).ToArray();
-            //newMesh.colors = colors;
-            //newMesh.SetIndices(indices, MeshTopology.Points, 0);
-            //newMesh.triangles = new int[] { 0, 1, 2 };
 
+            Mesh newMesh = new Mesh();
+            // Calcualte new mesh vertices from a convex hull
             var calc = new ConvexHullCalculator();
             var verts = new List<Vector3>();
             var tris = new List<int>();
             var normals = new List<Vector3>();
-
+            
             if (convexHullObject != null)
             {
                 // Remove the old object from the scene (even if we aren't able to replace it)
@@ -298,53 +274,32 @@ namespace Tutorials.ResearchMode
                 return;
             }
 
-
+            
             newMesh.SetVertices(verts);
             newMesh.SetTriangles(tris, 0);
             newMesh.SetNormals(normals);
+            newMesh.RecalculateBounds();
 
-            //convexHullObject = new GameObject("Convex Hull Object");
+            existingObject.AddComponent<MeshFilter>();
+            var mr2 = existingObject.AddComponent<MeshRenderer>();
             
-            /*
-            convexHullObject.AddComponent<MeshFilter>();
-            var mr = convexHullObject.AddComponent<MeshRenderer>();
-            Shader shades = Shader.Find("Standard");
-            mr.material.shader = shades;
-            //mr.material = Resources.Load<Material>("defaultObjectMat");
-            mr.material.color = Color.black;
-            convexHullObject.GetComponent<MeshFilter>().mesh = newMesh;
-            */
-            //Destroy(existingObject.GetComponent<MeshFilter>());
-            //existingObject.AddComponent<MeshFilter>();
-            //var mr2 = existingObject.AddComponent<MeshRenderer>();
-            //Shader shades2 = Shader.Find("Standard");
-            //mr2.material.shader = shades2;
-            //mr.material = Resources.Load<Material>("defaultObjectMat");
-            //mr2.material.color = Color.white;
-            //existingObject.GetComponent<MeshFilter>().mesh = newMesh;
-
-
-
+            // Give object correct scale
             existingObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            //Destroy(existingObject.GetComponent<BoundsControl>());
-            //existingObject.AddComponent<BoundsControl>();
-            //existingObject.GetComponent<BoundsControl>().BoxPadding = new Vector3(0.0f, 0.0f, 0.0f);
-            // scale is correct but the surrounding box is way too big!
-
-            // Relocate the object onto the bounding box if the user had previously moved it and is creating a new mesh
+           
+            // Apply mesh to object
+            existingObject.GetComponent<MeshFilter>().mesh = newMesh;
+            
+            // Move object to location it was captured
             existingObject.transform.position = boundingBox.transform.position;
 
-            existingObject.GetComponent<MeshFilter>().mesh = newMesh;
+            // Activate and display object
             existingObject.SetActive(true);
             objectManager.AddSpawnedObject(existingObject);
+            shouldUpdate = false;
 
-            //convexHullObject.SetActive(true);
         }
 
 
-
-
-        
-
     }
 }
+
